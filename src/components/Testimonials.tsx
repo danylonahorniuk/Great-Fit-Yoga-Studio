@@ -47,7 +47,7 @@ const reviews = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-20 bg-white">
+    <section id="testimonials" className="py-20 bg-[#F5F0E8]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-2">Що кажуть наші клієнти</h2>
@@ -56,7 +56,7 @@ export default function Testimonials() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {reviews.map((r) => (
-            <div key={r.name} className="bg-[#F5F0E8] rounded-2xl p-6 flex flex-col gap-4">
+            <div key={r.name} className="bg-white rounded-2xl p-6 flex flex-col gap-4 shadow-sm">
               {/* Stars */}
               <div className="flex gap-0.5">
                 {Array.from({ length: r.rating }).map((_, i) => (

@@ -35,7 +35,7 @@ const trainers = [
 
 export default function Team() {
   return (
-    <section id="team" className="py-20 bg-[#F5F0E8]">
+    <section id="team" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-6">
           <h2 className="text-4xl font-bold text-gray-900 mb-2">Наша чудова команда</h2>
