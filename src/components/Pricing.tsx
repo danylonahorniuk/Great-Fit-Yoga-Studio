@@ -63,7 +63,7 @@ export default function Pricing() {
           {plans.map((plan) => (
             <div
               key={plan.name}
-              className={`rounded-2xl p-8 flex flex-col ${
+              className={`rounded-2xl p-8 flex flex-col hover:-translate-y-1 hover:shadow-xl transition-all duration-300 cursor-default ${
                 plan.highlight
                   ? "bg-[#485C46] text-white shadow-2xl scale-105"
                   : "bg-[#E8E2D6] text-gray-900 shadow-md"
