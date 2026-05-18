@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <section id="home" className="relative min-h-screen overflow-hidden" style={{ backgroundColor: "#F0EDE6" }}>
       {/* Full-width background image */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <Image
           src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?w=1920&q=85"
           alt="Йога"
@@ -21,7 +21,7 @@ export default function Hero() {
 
       {/* Gradient: solid beige left → transparent right */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 pointer-events-none"
         style={{
           background: "linear-gradient(to right, #F0EDE6 30%, #F0EDE655 48%, transparent 62%)",
         }}
