@@ -101,7 +101,7 @@ export default function Pricing() {
                 onClick={openBooking}
                 className={`cursor-pointer mt-auto w-full py-3 rounded-lg text-sm font-semibold transition-colors ${
                   plan.highlight
-                    ? "bg-white text-[#485C46] hover:bg-green-50"
+                    ? "bg-[#E8E2D6] text-[#485C46] hover:bg-[#ddd8cc]"
                     : "bg-[#485C46] text-white hover:bg-[#3a4a38]"
                 }`}
               >
