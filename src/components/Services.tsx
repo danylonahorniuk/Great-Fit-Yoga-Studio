@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useModal } from "./modals/ModalContext";
 
 const ic = (path: React.ReactNode) => (
-  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#2D5A27" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#485C46" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
     {path}
   </svg>
 );
@@ -97,7 +97,7 @@ export default function Services() {
 
         <div className="flex gap-7 items-stretch">
           {/* Promo card */}
-          <div className="hidden md:flex flex-col justify-between bg-[#2D5A27] text-white rounded-2xl p-7 w-[210px] flex-shrink-0">
+          <div className="hidden md:flex flex-col justify-between bg-[#485C46] text-white rounded-2xl p-7 w-[210px] flex-shrink-0">
             <div>
               <h3 className="font-bold text-base leading-snug mb-4 text-center">
                 Почніть з безкоштовного пробного заняття
@@ -106,7 +106,7 @@ export default function Services() {
                 Досліджуйте йогу в нашій студії. Познайомтесь з інструкторами та відчуйте всі переваги.
               </p>
             </div>
-            <button onClick={openBooking} className="cursor-pointer mt-6 bg-white text-[#2D5A27] text-sm font-semibold px-4 py-2.5 rounded-md text-center hover:bg-green-50 transition-colors">
+            <button onClick={openBooking} className="cursor-pointer mt-6 bg-white text-[#485C46] text-sm font-semibold px-4 py-2.5 rounded-md text-center hover:bg-green-50 transition-colors">
               Спробувати безкоштовно
             </button>
           </div>
@@ -122,7 +122,7 @@ export default function Services() {
                 <div className="mb-1">{s.icon}</div>
                 <h3 className="font-semibold text-gray-900 text-[15px]">{s.title}</h3>
                 <p className="text-gray-500 text-sm flex-1 leading-relaxed">{s.desc}</p>
-                <button onClick={openContact} className="cursor-pointer text-[#2D5A27] text-sm font-medium border border-[#2D5A27] px-4 py-1.5 rounded-md w-fit hover:bg-[#2D5A27] hover:text-white transition-colors">
+                <button onClick={openContact} className="cursor-pointer text-[#485C46] text-sm font-medium border border-[#485C46] px-4 py-1.5 rounded-md w-fit hover:bg-[#485C46] hover:text-white transition-colors">
                   Дізнатись більше
                 </button>
               </div>

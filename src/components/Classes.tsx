@@ -151,7 +151,7 @@ export default function Classes() {
             <div className="grid grid-cols-2 gap-6">
               {active.features.map((f) => (
                 <div key={f.n} className="flex flex-col gap-3">
-                  <div className="w-14 h-14 rounded-full border-2 border-[#2D5A27]/40 flex items-center justify-center text-2xl font-bold text-[#2D5A27]/70 flex-shrink-0">
+                  <div className="w-14 h-14 rounded-full border-2 border-[#485C46]/40 flex items-center justify-center text-2xl font-bold text-[#485C46]/70 flex-shrink-0">
                     {f.n}
                   </div>
                   <div>
@@ -164,7 +164,7 @@ export default function Classes() {
 
             <button
               onClick={openBooking}
-              className="cursor-pointer mt-10 inline-block bg-[#2D5A27] text-white px-8 py-3.5 rounded-md text-base font-medium hover:bg-[#1e3f1b] transition-colors"
+              className="cursor-pointer mt-10 inline-block bg-[#485C46] text-white px-8 py-3.5 rounded-md text-base font-medium hover:bg-[#3a4a38] transition-colors"
             >
               Отримати безкоштовне заняття
             </button>

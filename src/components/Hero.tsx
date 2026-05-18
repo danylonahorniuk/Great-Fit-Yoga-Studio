@@ -45,13 +45,13 @@ export default function Hero() {
           <div className="flex flex-wrap items-center gap-4">
             <button
               onClick={openBooking}
-              className="cursor-pointer bg-[#2D5A27] text-white px-6 py-3 rounded-md text-sm font-medium hover:bg-[#1e3f1b] transition-colors"
+              className="cursor-pointer bg-[#485C46] text-white px-6 py-3 rounded-md text-sm font-medium hover:bg-[#3a4a38] transition-colors"
             >
               Записатись на сесію
             </button>
             <button
               onClick={openContact}
-              className="cursor-pointer flex items-center gap-2 text-gray-700 text-sm font-medium hover:text-[#2D5A27] transition-colors"
+              className="cursor-pointer flex items-center gap-2 text-gray-700 text-sm font-medium hover:text-[#485C46] transition-colors"
             >
               Зв'язатись з нами
               <Info size={16} />

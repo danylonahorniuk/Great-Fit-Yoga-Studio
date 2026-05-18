@@ -67,7 +67,7 @@ export default function Team() {
         <div className="text-center mt-10">
           <a
             href="#contact"
-            className="inline-block border border-gray-300 text-gray-700 px-6 py-3 rounded-md text-sm hover:border-[#2D5A27] hover:text-[#2D5A27] transition-colors"
+            className="inline-block border border-gray-300 text-gray-700 px-6 py-3 rounded-md text-sm hover:border-[#485C46] hover:text-[#485C46] transition-colors"
           >
             Дізнатись більше про нас
           </a>

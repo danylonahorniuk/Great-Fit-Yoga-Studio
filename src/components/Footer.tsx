@@ -55,7 +55,7 @@ export default function Footer() {
     <footer id="contact" className="bg-white border-t border-gray-200 pt-10 pb-6">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
-          <a href="#home" className="flex items-center gap-2 font-bold text-[#2D5A27]">
+          <a href="#home" className="flex items-center gap-2 font-bold text-[#485C46]">
             <Leaf size={20} />
             <span className="text-sm leading-tight">
               Great Fit<br />
@@ -65,7 +65,7 @@ export default function Footer() {
 
           <nav className="flex flex-wrap gap-6">
             {links.map((l) => (
-              <a key={l.href} href={l.href} className="text-sm text-gray-600 hover:text-[#2D5A27] transition-colors">
+              <a key={l.href} href={l.href} className="text-sm text-gray-600 hover:text-[#485C46] transition-colors">
                 {l.label}
               </a>
             ))}
@@ -75,7 +75,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 border-t border-gray-100 pt-6">
           <div className="flex items-center gap-4">
             {socials.map((s) => (
-              <a key={s.label} href={s.href} aria-label={s.label} className="text-gray-500 hover:text-[#2D5A27] transition-colors">
+              <a key={s.label} href={s.href} aria-label={s.label} className="text-gray-500 hover:text-[#485C46] transition-colors">
                 {s.svg}
               </a>
             ))}

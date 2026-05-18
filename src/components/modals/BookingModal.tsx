@@ -45,14 +45,14 @@ export default function BookingModal() {
 
         {submitted ? (
           <div className="text-center py-8">
-            <div className="w-16 h-16 rounded-full bg-[#2D5A27]/10 flex items-center justify-center mx-auto mb-4">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2D5A27" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <div className="w-16 h-16 rounded-full bg-[#485C46]/10 flex items-center justify-center mx-auto mb-4">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#485C46" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </div>
             <h3 className="text-xl font-bold text-gray-900 mb-2">Заявку надіслано!</h3>
             <p className="text-gray-500 text-sm">Ми зв'яжемось з вами найближчим часом для підтвердження.</p>
-            <button onClick={handleClose} className="mt-6 bg-[#2D5A27] text-white px-6 py-2.5 rounded-md text-sm font-medium hover:bg-[#1e3f1b] transition-colors">
+            <button onClick={handleClose} className="mt-6 bg-[#485C46] text-white px-6 py-2.5 rounded-md text-sm font-medium hover:bg-[#3a4a38] transition-colors">
               Закрити
             </button>
           </div>
@@ -68,7 +68,7 @@ export default function BookingModal() {
                 placeholder="Ваше ім'я *"
                 value={form.name}
                 onChange={e => setForm({ ...form, name: e.target.value })}
-                className="border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#2D5A27] transition-colors"
+                className="border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#485C46] transition-colors"
               />
               <input
                 required
@@ -76,20 +76,20 @@ export default function BookingModal() {
                 placeholder="Email *"
                 value={form.email}
                 onChange={e => setForm({ ...form, email: e.target.value })}
-                className="border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#2D5A27] transition-colors"
+                className="border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#485C46] transition-colors"
               />
               <input
                 type="tel"
                 placeholder="Телефон"
                 value={form.phone}
                 onChange={e => setForm({ ...form, phone: e.target.value })}
-                className="border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#2D5A27] transition-colors"
+                className="border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#485C46] transition-colors"
               />
               <select
                 required
                 value={form.cls}
                 onChange={e => setForm({ ...form, cls: e.target.value })}
-                className="border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#2D5A27] transition-colors text-gray-600"
+                className="border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#485C46] transition-colors text-gray-600"
               >
                 <option value="">Оберіть клас *</option>
                 {classes.map(c => <option key={c} value={c}>{c}</option>)}
@@ -98,12 +98,12 @@ export default function BookingModal() {
                 required
                 value={form.time}
                 onChange={e => setForm({ ...form, time: e.target.value })}
-                className="border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#2D5A27] transition-colors text-gray-600"
+                className="border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#485C46] transition-colors text-gray-600"
               >
                 <option value="">Зручний час *</option>
                 {times.map(t => <option key={t} value={t}>{t}</option>)}
               </select>
-              <button type="submit" className="mt-2 bg-[#2D5A27] text-white py-3 rounded-lg text-sm font-semibold hover:bg-[#1e3f1b] transition-colors">
+              <button type="submit" className="mt-2 bg-[#485C46] text-white py-3 rounded-lg text-sm font-semibold hover:bg-[#3a4a38] transition-colors">
                 Надіслати заявку
               </button>
             </form>
