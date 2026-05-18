@@ -66,7 +66,7 @@ export default function Pricing() {
               className={`rounded-2xl p-8 flex flex-col ${
                 plan.highlight
                   ? "bg-[#485C46] text-white shadow-2xl scale-105"
-                  : "bg-[#F5F0E8] text-gray-900 shadow-md"
+                  : "bg-[#E8E2D6] text-gray-900 shadow-md"
               }`}
             >
               {plan.highlight && (
