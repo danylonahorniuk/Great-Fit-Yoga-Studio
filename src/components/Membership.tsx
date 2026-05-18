@@ -8,13 +8,15 @@ export default function Membership() {
   return (
     <section id="membership" className="relative overflow-hidden" style={{ minHeight: "340px" }}>
       {/* Background */}
-      <Image
-        src="https://images.unsplash.com/photo-1588286840104-8957b019727f?w=1920&q=85"
-        alt="Йога клас"
-        fill
-        className="object-cover object-center"
-        sizes="100vw"
-      />
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="https://images.unsplash.com/photo-1588286840104-8957b019727f?w=1920&q=85"
+          alt="Йога клас"
+          fill
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+      </div>
       <div className="absolute inset-0 bg-black/35 z-[1]" />
 
       <div className="relative z-[2] max-w-7xl mx-auto px-6 py-14 flex justify-end items-center min-h-[340px]">

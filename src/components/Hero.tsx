@@ -8,14 +8,16 @@ export default function Hero() {
   return (
     <section id="home" className="relative min-h-screen overflow-hidden" style={{ backgroundColor: "#F0EDE6" }}>
       {/* Full-width background image */}
-      <Image
-        src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?w=1920&q=85"
-        alt="Йога"
-        fill
-        priority
-        className="object-cover object-right"
-        sizes="100vw"
-      />
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?w=1920&q=85"
+          alt="Йога"
+          fill
+          priority
+          className="object-cover object-right"
+          sizes="100vw"
+        />
+      </div>
 
       {/* Gradient: solid beige left → transparent right */}
       <div
