@@ -1,82 +1,27 @@
 "use client";
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  IconSeeding,
+  IconHanger,
+  IconBook,
+  IconYoga,
+  IconUserStar,
+  IconDroplets,
+  IconMoodKid,
+} from "@tabler/icons-react";
 import { useModal } from "./modals/ModalContext";
 
-const ic = (path: React.ReactNode) => (
-  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#485C46" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-    {path}
-  </svg>
-);
-
-const icons = {
-  spa: ic(<>
-    <path d="M24 40c0 0-12-8-12-20a12 12 0 0 1 12-12 12 12 0 0 1 12 12c0 12-12 20-12 20z"/>
-    <path d="M24 14c0 0-4 4-4 10"/>
-    <path d="M24 14c0 0 4 4 4 10"/>
-  </>),
-
-  hanger: ic(<>
-    <path d="M24 10a4 4 0 0 1 4 4c0 2-2 3-4 4L8 28h32L24 18"/>
-    <circle cx="24" cy="8" r="2"/>
-    <line x1="20" y1="36" x2="28" y2="36"/>
-  </>),
-
-  book: ic(<>
-    <path d="M24 10v28"/>
-    <path d="M10 10h14v28H10a2 2 0 0 1-2-2V12a2 2 0 0 1 2-2z"/>
-    <path d="M24 10h14a2 2 0 0 1 2 2v24a2 2 0 0 1-2 2H24"/>
-    <line x1="14" y1="18" x2="20" y2="18"/>
-    <line x1="14" y1="24" x2="20" y2="24"/>
-    <line x1="28" y1="18" x2="38" y2="18"/>
-    <line x1="28" y1="24" x2="38" y2="24"/>
-  </>),
-
-  mat: ic(<>
-    <rect x="10" y="16" width="28" height="16" rx="8"/>
-    <rect x="16" y="20" width="16" height="8" rx="4"/>
-    <line x1="10" y1="24" x2="6" y2="24"/>
-    <line x1="38" y1="24" x2="42" y2="24"/>
-  </>),
-
-  trainer: ic(<>
-    <circle cx="18" cy="12" r="5"/>
-    <path d="M8 36v-4a8 8 0 0 1 8-8h4"/>
-    <circle cx="34" cy="12" r="5"/>
-    <path d="M44 36v-4a8 8 0 0 0-8-8h-4"/>
-    <line x1="24" y1="24" x2="24" y2="36"/>
-    <path d="M18 30h12"/>
-  </>),
-
-  shower: ic(<>
-    <path d="M10 10 Q10 6 14 6 L38 6 Q42 6 42 10 L42 20"/>
-    <path d="M42 20 Q42 26 36 26 L16 26 Q10 26 10 20 L10 14"/>
-    <line x1="16" y1="32" x2="14" y2="40"/>
-    <line x1="24" y1="32" x2="22" y2="40"/>
-    <line x1="32" y1="32" x2="30" y2="40"/>
-    <line x1="20" y1="34" x2="18" y2="42"/>
-    <line x1="28" y1="34" x2="26" y2="42"/>
-  </>),
-
-  kids: ic(<>
-    <circle cx="24" cy="10" r="5"/>
-    <path d="M24 15v12"/>
-    <path d="M16 20l8 4 8-4"/>
-    <path d="M18 27l-4 8"/>
-    <path d="M30 27l4 8"/>
-    <path d="M10 42h8"/>
-    <path d="M30 42h8"/>
-  </>),
-};
+const iconProps = { size: 48, stroke: 1.8, color: "#485C46" };
 
 const services = [
-  { icon: icons.spa,     title: "Спа-зона",            desc: "Відновіться та розслабтесь у нашій преміальній спа-зоні після тренування. Ідеально для тіла та душі." },
-  { icon: icons.hanger,  title: "Роздягальні",          desc: "Сучасні роздягальні з усіма зручностями для комфортного перебування у нашому центрі." },
-  { icon: icons.book,    title: "Безкоштовні уроки",    desc: "Вступні уроки для новачків — спробуй йогу без жодних зобов'язань і відчуй усі переваги." },
-  { icon: icons.mat,     title: "Килимки в оренду",     desc: "Не маєш свого килимка? Ми надаємо якісні йога-килимки для кожного відвідувача студії." },
-  { icon: icons.trainer, title: "Персональний тренер",  desc: "Індивідуальні заняття з досвідченим тренером для швидкого прогресу та досягнення цілей." },
-  { icon: icons.shower,  title: "Душові кімнати",       desc: "Чисті та зручні душові кімнати з усім необхідним після тренування." },
-  { icon: icons.kids,    title: "Дитяча йога",          desc: "Спеціальні заняття для дітей від 5 років. Гнучкість, координація і любов до здоров'я." },
+  { icon: <IconSeeding {...iconProps} />,   title: "Спа-зона",            desc: "Відновіться та розслабтесь у нашій преміальній спа-зоні після тренування. Ідеально для тіла та душі." },
+  { icon: <IconHanger {...iconProps} />,    title: "Роздягальні",          desc: "Сучасні роздягальні з усіма зручностями для комфортного перебування у нашому центрі." },
+  { icon: <IconBook {...iconProps} />,      title: "Безкоштовні уроки",    desc: "Вступні уроки для новачків — спробуй йогу без жодних зобов'язань і відчуй усі переваги." },
+  { icon: <IconYoga {...iconProps} />,      title: "Килимки в оренду",     desc: "Не маєш свого килимка? Ми надаємо якісні йога-килимки для кожного відвідувача студії." },
+  { icon: <IconUserStar {...iconProps} />,  title: "Персональний тренер",  desc: "Індивідуальні заняття з досвідченим тренером для швидкого прогресу та досягнення цілей." },
+  { icon: <IconDroplets {...iconProps} />,  title: "Душові кімнати",       desc: "Чисті та зручні душові кімнати з усім необхідним після тренування." },
+  { icon: <IconMoodKid {...iconProps} />,   title: "Дитяча йога",          desc: "Спеціальні заняття для дітей від 5 років. Гнучкість, координація і любов до здоров'я." },
 ];
 
 export default function Services() {
