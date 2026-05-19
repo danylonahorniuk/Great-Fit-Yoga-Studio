@@ -3,10 +3,16 @@ import { useState } from "react";
 import { X } from "lucide-react";
 import Image from "next/image";
 import { useModal } from "./ModalContext";
+import { useEffect } from "react";
 
 export default function ServiceModal() {
   const { open, serviceData, close, openBooking } = useModal();
   const [isClosing, setIsClosing] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
+
+  useEffect(() => {
+    if (open === "service") setImgLoaded(false);
+  }, [open, serviceData]);
 
   if (open !== "service" && !isClosing) return null;
 
@@ -35,13 +41,17 @@ export default function ServiceModal() {
         style={{ animation: isClosing ? "modalOut 0.28s ease-in both" : "modalIn 0.32s ease-out both" }}
       >
         {/* Header image */}
-        <div className="relative h-48 w-full">
+        <div className="relative h-48 w-full bg-gray-200">
+          {!imgLoaded && (
+            <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 animate-pulse" />
+          )}
           <Image
             src={serviceData?.image ?? ""}
             alt={serviceData?.title ?? ""}
             fill
-            className="object-cover"
+            className={`object-cover transition-opacity duration-300 ${imgLoaded ? "opacity-100" : "opacity-0"}`}
             sizes="448px"
+            onLoad={() => setImgLoaded(true)}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
           <button
