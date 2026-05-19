@@ -29,14 +29,14 @@ export default function Contacts() {
           <div className="flex flex-col gap-4">
 
             {/* Address */}
-            <div className="bg-[#485C46] rounded-2xl p-6">
+            <div className="bg-white rounded-2xl p-6">
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center flex-shrink-0">
-                  <MapPin size={16} color="white" strokeWidth={1.8} />
+                <div className="w-8 h-8 rounded-full bg-[#485C46]/10 flex items-center justify-center flex-shrink-0">
+                  <MapPin size={16} color="#485C46" strokeWidth={1.8} />
                 </div>
-                <p className="font-semibold text-white">Адреса</p>
+                <p className="font-semibold text-gray-900">Адреса</p>
               </div>
-              <p className="text-white/70 text-sm leading-relaxed pl-11">
+              <p className="text-gray-500 text-sm leading-relaxed pl-11">
                 вул. Хрещатик, 22, офіс 5<br />
                 Київ, 01001
               </p>
@@ -44,19 +44,19 @@ export default function Contacts() {
                 href="https://maps.google.com/?q=Хрещатик+22+Київ"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block mt-2 pl-11 text-xs text-white/50 font-medium hover:text-white transition-colors"
+                className="inline-block mt-2 pl-11 text-xs text-[#485C46] font-medium hover:underline transition-colors"
               >
                 Відкрити у Google Maps →
               </a>
             </div>
 
             {/* Contacts */}
-            <div className="bg-[#485C46] rounded-2xl p-6">
+            <div className="bg-white rounded-2xl p-6">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center flex-shrink-0">
-                  <Phone size={16} color="white" strokeWidth={1.8} />
+                <div className="w-8 h-8 rounded-full bg-[#485C46]/10 flex items-center justify-center flex-shrink-0">
+                  <Phone size={16} color="#485C46" strokeWidth={1.8} />
                 </div>
-                <p className="font-semibold text-white">Контакти</p>
+                <p className="font-semibold text-gray-900">Контакти</p>
               </div>
               <div className="flex flex-col gap-3 pl-11">
                 {contacts.map(({ icon: Icon, label, href }) => (
@@ -67,8 +67,8 @@ export default function Contacts() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 group"
                   >
-                    <Icon size={15} color="rgba(255,255,255,0.5)" strokeWidth={1.8} className="flex-shrink-0" />
-                    <span className="text-white/70 text-sm group-hover:text-white transition-colors">
+                    <Icon size={15} color="#485C46" strokeWidth={1.8} className="flex-shrink-0 opacity-60" />
+                    <span className="text-gray-500 text-sm group-hover:text-gray-900 transition-colors">
                       {label}
                     </span>
                   </a>
@@ -77,18 +77,18 @@ export default function Contacts() {
             </div>
 
             {/* Hours */}
-            <div className="bg-[#485C46] rounded-2xl p-6">
+            <div className="bg-white rounded-2xl p-6">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center flex-shrink-0">
-                  <Clock size={16} color="white" strokeWidth={1.8} />
+                <div className="w-8 h-8 rounded-full bg-[#485C46]/10 flex items-center justify-center flex-shrink-0">
+                  <Clock size={16} color="#485C46" strokeWidth={1.8} />
                 </div>
-                <p className="font-semibold text-white">Години роботи</p>
+                <p className="font-semibold text-gray-900">Години роботи</p>
               </div>
               <div className="flex flex-col gap-2.5 pl-11">
                 {hours.map(({ days, time }) => (
                   <div key={days} className="flex justify-between items-center text-sm">
-                    <span className="text-white/60">{days}</span>
-                    <span className="font-medium text-white">{time}</span>
+                    <span className="text-gray-400">{days}</span>
+                    <span className="font-medium text-gray-900">{time}</span>
                   </div>
                 ))}
               </div>
