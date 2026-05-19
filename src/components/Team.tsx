@@ -7,6 +7,7 @@ import { useModal } from "./modals/ModalContext";
 const trainers = [
   {
     name: "Олена Коваль",
+    genitive: "Олени",
     role: "Хатха-йога · Медитація",
     exp: "7 років досвіду",
     img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop&crop=faces&q=80",
@@ -15,6 +16,7 @@ const trainers = [
   },
   {
     name: "Марія Петренко",
+    genitive: "Марії",
     role: "Флай-йога · Розтяжка",
     exp: "5 років досвіду",
     img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&h=200&fit=crop&crop=faces&q=80",
@@ -23,6 +25,7 @@ const trainers = [
   },
   {
     name: "Дмитро Сидоренко",
+    genitive: "Дмитра",
     role: "Аштанга · Силова йога",
     exp: "10 років досвіду",
     img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=faces&q=80",
@@ -31,6 +34,7 @@ const trainers = [
   },
   {
     name: "Наталія Бойко",
+    genitive: "Наталії",
     role: "Інь-йога · Дихання",
     exp: "6 років досвіду",
     img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=faces&q=80",
@@ -39,6 +43,7 @@ const trainers = [
   },
   {
     name: "Андрій Мельник",
+    genitive: "Андрія",
     role: "Зумба · Кардіо",
     exp: "4 роки досвіду",
     img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop&crop=faces&q=80",
@@ -47,6 +52,7 @@ const trainers = [
   },
   {
     name: "Ірина Шевченко",
+    genitive: "Ірини",
     role: "Йога для початківців",
     exp: "8 років досвіду",
     img: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=200&h=200&fit=crop&crop=faces&q=80",
@@ -158,7 +164,7 @@ export default function Team() {
                 onClick={handleBook}
                 className="cursor-pointer w-full bg-[#485C46] text-white py-3 rounded-lg text-sm font-semibold hover:bg-[#3a4a38] transition-colors"
               >
-                Записатись до {selected?.name.split(" ")[0]}
+                Записатись до {selected?.genitive}
               </button>
             </div>
           </div>
