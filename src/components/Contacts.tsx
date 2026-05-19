@@ -1,4 +1,5 @@
-import { MapPin, Phone, Mail, Clock, Instagram } from "lucide-react";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { IconBrandInstagram } from "@tabler/icons-react";
 
 const hours = [
   { days: "Понеділок – П'ятниця", time: "07:00 – 21:00" },
@@ -9,7 +10,7 @@ const hours = [
 const contacts = [
   { icon: Phone,     label: "+380 44 123 45 67",  href: "tel:+380441234567" },
   { icon: Mail,      label: "info@greatfit.ua",    href: "mailto:info@greatfit.ua" },
-  { icon: Instagram, label: "@greatfit_yoga",      href: "https://instagram.com/greatfit_yoga" },
+  { icon: IconBrandInstagram, label: "@greatfit_yoga", href: "https://instagram.com/greatfit_yoga" },
 ];
 
 export default function Contacts() {
