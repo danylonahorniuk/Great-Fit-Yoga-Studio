@@ -4,11 +4,13 @@ import { Menu, X, Leaf, ShoppingBag } from "lucide-react";
 import { useModal } from "./modals/ModalContext";
 
 const links = [
-  { label: "Головна", href: "#home" },
-  { label: "Послуги", href: "#services" },
-  { label: "Зал", href: "#facility" },
-  { label: "Про нас", href: "#team" },
-  { label: "Контакти", href: "#contact" },
+  { label: "Головна",   href: "#home" },
+  { label: "Послуги",   href: "#services" },
+  { label: "Програми",  href: "#facility" },
+  { label: "Ціни",      href: "#pricing" },
+  { label: "Команда",   href: "#team" },
+  { label: "FAQ",       href: "#faq" },
+  { label: "Контакти",  href: "#contacts" },
 ];
 
 export default function Navbar() {
@@ -35,7 +37,7 @@ export default function Navbar() {
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-7">
+        <nav className="hidden md:flex items-center gap-5">
           {links.map((l) => (
             <a
               key={l.href}
