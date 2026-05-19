@@ -72,10 +72,17 @@ export default function Services() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    services.forEach((s) => {
-      const img = new window.Image();
-      img.src = s.image;
-    });
+    const preload = () => {
+      services.forEach((s) => {
+        const img = new window.Image();
+        img.src = `/_next/image?url=${encodeURIComponent(s.image)}&w=640&q=75`;
+      });
+    };
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(preload);
+    } else {
+      setTimeout(preload, 2000);
+    }
   }, []);
 
   const scroll = (dir: "left" | "right") => {
