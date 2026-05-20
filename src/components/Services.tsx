@@ -121,7 +121,7 @@ export default function Services() {
           {/* Scrollable cards */}
           <div ref={scrollRef} className="flex gap-6 overflow-x-auto pb-1 flex-1 min-w-0" style={{ scrollbarWidth: "none" }}>
             {services.map((s, i) => (
-              <FadeIn key={s.title} delay={0.1 + i * 0.08} className="flex-shrink-0">
+              <FadeIn key={s.title} delay={0.1 + i * 0.08} direction="none" className="flex-shrink-0">
               <div
                 className="rounded-2xl px-6 py-5 w-[250px] flex flex-col gap-3 hover:shadow-md transition-shadow h-full"
                 style={{ backgroundColor: "#EEF1F6" }}
