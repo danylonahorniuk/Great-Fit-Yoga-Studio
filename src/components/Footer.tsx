@@ -55,7 +55,7 @@ export default function Footer() {
     <footer id="contact" className="bg-white border-t border-gray-200 pt-10 pb-6">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
-          <a href="#home" className="flex items-center gap-2 font-bold text-[#485C46]">
+          <a href="#home" className="flex items-center gap-0.5 font-bold text-[#485C46]">
             <Image src="/logo.png" alt="Great Fit Yoga Studio" width={80} height={80} className="object-contain" />
             <span className="text-sm leading-tight">
               Great Fit<br />
