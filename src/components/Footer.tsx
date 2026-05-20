@@ -1,14 +1,6 @@
+"use client";
 import Image from "next/image";
-
-const links = [
-  { label: "Головна",  href: "#home" },
-  { label: "Послуги",  href: "#services" },
-  { label: "Програми", href: "#facility" },
-  { label: "Ціни",     href: "#pricing" },
-  { label: "Команда",  href: "#team" },
-  { label: "FAQ",      href: "#faq" },
-  { label: "Контакти", href: "#contacts" },
-];
+import { useModal } from "./modals/ModalContext";
 
 const socials = [
   {
@@ -53,12 +45,14 @@ const socials = [
 ];
 
 export default function Footer() {
+  const { openBooking } = useModal();
+
   return (
     <footer id="contact" className="bg-white border-t border-gray-200 pt-12 pb-6">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Main grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10 items-center">
 
           {/* Col 1 — Logo + desc + socials */}
           <div className="flex flex-col gap-4">
@@ -81,14 +75,18 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Col 2 — Navigation */}
-          <div className="flex flex-col gap-3 md:items-center">
-            <p className="text-xs font-semibold text-gray-900 uppercase tracking-widest mb-1">Навігація</p>
-            {links.map((l) => (
-              <a key={l.href} href={l.href} className="text-sm text-gray-400 hover:text-[#485C46] transition-colors">
-                {l.label}
-              </a>
-            ))}
+          {/* Col 2 — Mini CTA */}
+          <div className="flex flex-col items-center text-center gap-4 bg-[#F5F0E8] rounded-2xl px-8 py-8">
+            <p className="text-xs font-semibold text-[#485C46] uppercase tracking-widest">Спробуй безкоштовно</p>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              Перший місяць занять — без жодних зобов'язань. Відчуй різницю вже після першого заняття.
+            </p>
+            <button
+              onClick={openBooking}
+              className="cursor-pointer bg-[#485C46] text-white text-sm font-medium px-6 py-2.5 rounded-md hover:bg-[#3a4a38] transition-colors"
+            >
+              Записатись
+            </button>
           </div>
 
           {/* Col 3 — Contacts */}
