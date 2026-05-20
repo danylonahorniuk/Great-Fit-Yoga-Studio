@@ -56,7 +56,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
           <a href="#home" className="flex items-center gap-2 font-bold text-[#485C46]">
-            <Image src="/logo.webp" alt="Great Fit Yoga Studio" width={48} height={48} className="object-contain" />
+            <Image src="/logo.webp" alt="Great Fit Yoga Studio" width={64} height={64} className="object-contain" />
             <span className="text-sm leading-tight">
               Great Fit<br />
               <span className="font-normal text-xs text-gray-500">Yoga Studio</span>
