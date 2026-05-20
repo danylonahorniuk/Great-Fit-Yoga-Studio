@@ -1,5 +1,14 @@
 import Image from "next/image";
 
+const links = [
+  { label: "Головна",  href: "#home" },
+  { label: "Послуги",  href: "#services" },
+  { label: "Програми", href: "#facility" },
+  { label: "Ціни",     href: "#pricing" },
+  { label: "Команда",  href: "#team" },
+  { label: "FAQ",      href: "#faq" },
+  { label: "Контакти", href: "#contacts" },
+];
 
 const socials = [
   {
@@ -43,16 +52,18 @@ const socials = [
   },
 ];
 
+const half = Math.ceil(links.length / 2);
+
 export default function Footer() {
   return (
     <footer id="contact" className="bg-white border-t border-gray-200 pt-12 pb-6">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Main grid */}
-        <div className="flex flex-col md:flex-row justify-between gap-10 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
 
           {/* Col 1 — Logo + desc + socials */}
-          <div className="flex flex-col gap-4 max-w-xs">
+          <div className="flex flex-col gap-4">
             <a href="#home" className="flex items-center gap-0 font-bold text-[#485C46]">
               <Image src="/logo.png" alt="Great Fit Yoga Studio" width={80} height={80} className="object-contain" />
               <span className="text-sm leading-tight">
@@ -72,7 +83,19 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Col 2 — Contacts */}
+          {/* Col 2 — Navigation split in 2 */}
+          <div className="flex flex-col gap-3 md:items-center">
+            <p className="text-xs font-semibold text-gray-900 uppercase tracking-widest mb-1">Навігація</p>
+            <div className="grid grid-cols-2 gap-x-8 gap-y-3">
+              {links.map((l) => (
+                <a key={l.href} href={l.href} className="text-sm text-gray-400 hover:text-[#485C46] transition-colors">
+                  {l.label}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Col 3 — Contacts */}
           <div className="flex flex-col gap-3 md:items-end">
             <p className="text-xs font-semibold text-gray-900 uppercase tracking-widest mb-1">Контакти</p>
             <p className="text-sm text-gray-400 leading-relaxed md:text-right">вул. Хрещатик, 22, офіс 5<br />Київ, 01001</p>
