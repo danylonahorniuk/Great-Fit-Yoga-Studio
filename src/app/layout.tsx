@@ -14,8 +14,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Great Fit Yoga Studio",
-  description: "Студія йоги та фітнесу Great Fit",
+  title: "Great Fit Yoga Studio — Студія йоги у Києві",
+  description: "Йога для будь-якого рівня підготовки. Хатха, флай-йога, інь-йога, аштанга та зумба. Перший місяць безкоштовно. Записуйтесь онлайн.",
 };
 
 export default function RootLayout({
