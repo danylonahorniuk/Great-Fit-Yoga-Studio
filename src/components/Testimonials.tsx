@@ -27,7 +27,7 @@ const reviews = [
     role: "Відвідує 6 місяців",
     text: "Зал чистий, обладнання сучасне, персонал привітний. Займаюсь тричі на тиждень і вже не уявляю свого життя без цього.",
     rating: 5,
-    img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=faces&q=80",
+    img: "https://images.unsplash.com/photo-1651684215020-f7a5b6610f23?w=100&h=100&fit=crop&crop=faces&q=80",
   },
   {
     name: "Юлія Павленко",
@@ -41,7 +41,7 @@ const reviews = [
     role: "Відвідує 3 місяці",
     text: "Як новачок був трохи невпевнений, але група для початківців — просто ідеальна. Ніхто не засуджує, всі підтримують. Кайф!",
     rating: 5,
-    img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop&crop=faces&q=80",
+    img: "https://images.unsplash.com/photo-1758598497192-15ffa411c3de?w=100&h=100&fit=crop&crop=faces&q=80",
   },
 ];
 
