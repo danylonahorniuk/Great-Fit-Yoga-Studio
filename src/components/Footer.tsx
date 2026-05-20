@@ -1,11 +1,13 @@
 import Image from "next/image";
 
 const links = [
-  { label: "Головна", href: "#home" },
-  { label: "Послуги", href: "#services" },
-  { label: "Зал", href: "#facility" },
-  { label: "Про нас", href: "#team" },
-  { label: "Контакти", href: "#contact" },
+  { label: "Головна",  href: "#home" },
+  { label: "Послуги",  href: "#services" },
+  { label: "Програми", href: "#facility" },
+  { label: "Ціни",     href: "#pricing" },
+  { label: "Команда",  href: "#team" },
+  { label: "FAQ",      href: "#faq" },
+  { label: "Контакти", href: "#contacts" },
 ];
 
 const socials = [
@@ -52,36 +54,63 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-white border-t border-gray-200 pt-10 pb-6">
+    <footer id="contact" className="bg-white border-t border-gray-200 pt-12 pb-6">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
-          <a href="#home" className="flex items-center gap-0 font-bold text-[#485C46]">
-            <Image src="/logo.png" alt="Great Fit Yoga Studio" width={80} height={80} className="object-contain" />
-            <span className="text-sm leading-tight">
-              Great Fit<br />
-              <span className="font-normal text-xs text-gray-500">Yoga Studio</span>
-            </span>
-          </a>
 
-          <nav className="flex flex-wrap gap-6">
+        {/* Main grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+
+          {/* Col 1 — Logo + desc + socials */}
+          <div className="flex flex-col gap-4">
+            <a href="#home" className="flex items-center gap-0 font-bold text-[#485C46]">
+              <Image src="/logo.png" alt="Great Fit Yoga Studio" width={80} height={80} className="object-contain" />
+              <span className="text-sm leading-tight">
+                Great Fit<br />
+                <span className="font-normal text-xs text-gray-500">Yoga Studio</span>
+              </span>
+            </a>
+            <p className="text-sm text-gray-400 leading-relaxed max-w-[220px]">
+              Студія йоги у серці Києва. Знаходь баланс, зміцнюй тіло та заспокоюй розум.
+            </p>
+            <div className="flex items-center gap-4 mt-1">
+              {socials.map((s) => (
+                <a key={s.label} href={s.href} aria-label={s.label} className="text-gray-400 hover:text-[#485C46] transition-colors">
+                  {s.svg}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Col 2 — Navigation */}
+          <div className="flex flex-col gap-3">
+            <p className="text-xs font-semibold text-gray-900 uppercase tracking-widest mb-1">Навігація</p>
             {links.map((l) => (
-              <a key={l.href} href={l.href} className="text-sm text-gray-600 hover:text-[#485C46] transition-colors">
+              <a key={l.href} href={l.href} className="text-sm text-gray-400 hover:text-[#485C46] transition-colors w-fit">
                 {l.label}
               </a>
             ))}
-          </nav>
+          </div>
+
+          {/* Col 3 — Contacts */}
+          <div className="flex flex-col gap-3">
+            <p className="text-xs font-semibold text-gray-900 uppercase tracking-widest mb-1">Контакти</p>
+            <p className="text-sm text-gray-400 leading-relaxed">вул. Хрещатик, 22, офіс 5<br />Київ, 01001</p>
+            <a href="tel:+380441234567" className="text-sm text-gray-400 hover:text-[#485C46] transition-colors w-fit">
+              +380 44 123 45 67
+            </a>
+            <a href="mailto:info@greatfit.ua" className="text-sm text-gray-400 hover:text-[#485C46] transition-colors w-fit">
+              info@greatfit.ua
+            </a>
+            <p className="text-sm text-gray-400">Пн–Пт: 07:00–21:00<br />Сб–Нд: 09:00–19:00</p>
+          </div>
+
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 border-t border-gray-100 pt-6">
-          <div className="flex items-center gap-4">
-            {socials.map((s) => (
-              <a key={s.label} href={s.href} aria-label={s.label} className="text-gray-500 hover:text-[#485C46] transition-colors">
-                {s.svg}
-              </a>
-            ))}
-          </div>
-          <p className="text-gray-400 text-xs">© 2026 Great Fit Yoga Studio. Всі права захищені</p>
+        {/* Bottom bar */}
+        <div className="border-t border-gray-100 pt-6">
+          <p className="text-center text-gray-400 text-xs">© 2026 Great Fit Yoga Studio. Всі права захищені</p>
         </div>
+
       </div>
     </footer>
   );
