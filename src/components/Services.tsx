@@ -100,10 +100,10 @@ export default function Services() {
           </div>
         </FadeIn>
 
+        <FadeIn delay={0.15}>
         <div className="flex gap-7 items-stretch">
           {/* Promo card */}
-          <FadeIn direction="left" delay={0.1} className="hidden md:flex flex-shrink-0">
-          <div className="flex flex-col justify-between bg-[#485C46] text-white rounded-2xl p-7 w-[210px]">
+          <div className="hidden md:flex flex-col justify-between bg-[#485C46] text-white rounded-2xl p-7 w-[210px] flex-shrink-0">
             <div>
               <h3 className="font-bold text-base leading-snug mb-4 text-center">
                 Почніть з безкоштовного пробного заняття
@@ -116,14 +116,13 @@ export default function Services() {
               Спробувати безкоштовно
             </button>
           </div>
-          </FadeIn>
 
           {/* Scrollable cards */}
           <div ref={scrollRef} className="flex gap-6 overflow-x-auto pb-1 flex-1 min-w-0" style={{ scrollbarWidth: "none" }}>
-            {services.map((s, i) => (
-              <FadeIn key={s.title} delay={0.1 + i * 0.2} direction="none" className="flex-shrink-0">
+            {services.map((s) => (
               <div
-                className="rounded-2xl px-6 py-5 w-[250px] flex flex-col gap-3 hover:shadow-md transition-shadow h-full"
+                key={s.title}
+                className="rounded-2xl px-6 py-5 w-[250px] flex-shrink-0 flex flex-col gap-3 hover:shadow-md transition-shadow"
                 style={{ backgroundColor: "#EEF1F6" }}
               >
                 <div className="mb-1">{s.icon}</div>
@@ -136,10 +135,10 @@ export default function Services() {
                   Дізнатись більше
                 </button>
               </div>
-              </FadeIn>
             ))}
           </div>
         </div>
+        </FadeIn>
 
         <div className="flex justify-end gap-3 mt-6">
           <button onClick={() => scroll("left")} className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-colors" aria-label="Назад">
