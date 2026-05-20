@@ -119,12 +119,11 @@ export default function Services() {
           </FadeIn>
 
           {/* Scrollable cards */}
-          <FadeIn delay={0.2} className="flex-1 min-w-0">
-          <div ref={scrollRef} className="flex gap-6 overflow-x-auto pb-1 h-full" style={{ scrollbarWidth: "none" }}>
-            {services.map((s) => (
+          <div ref={scrollRef} className="flex gap-6 overflow-x-auto pb-1 flex-1 min-w-0" style={{ scrollbarWidth: "none" }}>
+            {services.map((s, i) => (
+              <FadeIn key={s.title} delay={0.1 + i * 0.08} className="flex-shrink-0">
               <div
-                key={s.title}
-                className="rounded-2xl px-6 py-5 w-[250px] flex-shrink-0 flex flex-col gap-3 hover:shadow-md transition-shadow"
+                className="rounded-2xl px-6 py-5 w-[250px] flex flex-col gap-3 hover:shadow-md transition-shadow h-full"
                 style={{ backgroundColor: "#EEF1F6" }}
               >
                 <div className="mb-1">{s.icon}</div>
@@ -137,9 +136,9 @@ export default function Services() {
                   Дізнатись більше
                 </button>
               </div>
+              </FadeIn>
             ))}
           </div>
-          </FadeIn>
         </div>
 
         <div className="flex justify-end gap-3 mt-6">
