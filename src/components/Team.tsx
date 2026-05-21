@@ -93,24 +93,45 @@ export default function Team() {
           </div>
         </FadeIn>
 
-        <div className="grid md:grid-cols-2 gap-4">
+        {/* Mobile: 2-col avatar grid */}
+        <div className="grid grid-cols-2 md:hidden gap-3">
           {trainers.map((t, i) => (
             <FadeIn key={t.name} delay={i * 0.08}>
-            <button
-              key={t.name}
-              onClick={() => setSelected(t)}
-              className="flex items-center gap-5 bg-[#F5F0E8] rounded-2xl p-5 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 text-left w-full cursor-pointer"
-            >
-              <div className="relative w-[72px] h-[72px] rounded-full overflow-hidden flex-shrink-0">
-                <Image src={t.img} alt={t.name} fill className="object-cover" sizes="72px" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="font-semibold text-gray-900">{t.name}</p>
-                <p className="text-[#485C46] text-sm mt-0.5">{t.role}</p>
-                <p className="text-gray-400 text-xs mt-1">{t.exp}</p>
-              </div>
-              <div className="w-2 h-2 rounded-full bg-[#485C46]/30 flex-shrink-0" />
-            </button>
+              <button
+                onClick={() => setSelected(t)}
+                className="flex flex-col items-center gap-3 bg-[#F5F0E8] rounded-2xl p-4 hover:shadow-md transition-all duration-300 w-full cursor-pointer text-center"
+              >
+                <div className="relative w-20 h-20 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-white shadow-sm">
+                  <Image src={t.img} alt={t.name} fill className="object-cover" sizes="80px" />
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-900 text-sm leading-tight">{t.name}</p>
+                  <p className="text-[#485C46] text-xs mt-0.5">{t.role}</p>
+                  <p className="text-gray-400 text-[11px] mt-0.5">{t.exp}</p>
+                </div>
+              </button>
+            </FadeIn>
+          ))}
+        </div>
+
+        {/* Desktop: horizontal rows */}
+        <div className="hidden md:grid md:grid-cols-2 gap-4">
+          {trainers.map((t, i) => (
+            <FadeIn key={t.name} delay={i * 0.08}>
+              <button
+                onClick={() => setSelected(t)}
+                className="flex items-center gap-5 bg-[#F5F0E8] rounded-2xl p-5 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 text-left w-full cursor-pointer"
+              >
+                <div className="relative w-[72px] h-[72px] rounded-full overflow-hidden flex-shrink-0">
+                  <Image src={t.img} alt={t.name} fill className="object-cover" sizes="72px" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="font-semibold text-gray-900">{t.name}</p>
+                  <p className="text-[#485C46] text-sm mt-0.5">{t.role}</p>
+                  <p className="text-gray-400 text-xs mt-1">{t.exp}</p>
+                </div>
+                <div className="w-2 h-2 rounded-full bg-[#485C46]/30 flex-shrink-0" />
+              </button>
             </FadeIn>
           ))}
         </div>
