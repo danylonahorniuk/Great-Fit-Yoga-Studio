@@ -22,6 +22,7 @@ export default function Navbar() {
   useEffect(() => { setMounted(true); }, []);
 
   return (
+    <>
     <header
       className="fixed top-0 left-0 right-0 z-50"
       style={{
@@ -134,5 +135,6 @@ export default function Navbar() {
           </button>
         </div>
       </div>
+    </>
   );
 }
