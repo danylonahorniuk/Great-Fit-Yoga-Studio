@@ -47,6 +47,7 @@ export default function FAQ() {
 
   const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
   const visibleFaqs = showAll ? faqs : faqs.slice(0, VISIBLE_DEFAULT);
+  const allFaqs = faqs;
 
   return (
     <section id="faq" className="py-20 bg-white">
@@ -60,66 +61,71 @@ export default function FAQ() {
         </FadeIn>
 
         <FadeIn delay={0.1}>
-          <div className="bg-[#F5F0E8] rounded-2xl px-6 divide-y divide-[#E8E2D6]">
-            {faqs.slice(0, VISIBLE_DEFAULT).map((faq, i) => (
+          {/* Mobile: 4 visible + show more */}
+          <div className="md:hidden">
+            <div className="bg-[#F5F0E8] rounded-2xl px-6 divide-y divide-[#E8E2D6]">
+              {faqs.slice(0, VISIBLE_DEFAULT).map((faq, i) => (
+                <div key={i}>
+                  <button onClick={() => toggle(i)} className="w-full flex items-center justify-between gap-4 py-5 text-left cursor-pointer group">
+                    <span className={`text-sm font-semibold transition-colors ${openIndex === i ? "text-[#485C46]" : "text-gray-900 group-hover:text-[#485C46]"}`}>{faq.q}</span>
+                    <ChevronDown size={18} className="flex-shrink-0 text-gray-400 transition-transform duration-300" style={{ transform: openIndex === i ? "rotate(180deg)" : "rotate(0deg)" }} />
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {openIndex === i && (
+                      <motion.div key="a" initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.28, ease: "easeInOut" }} className="overflow-hidden">
+                        <p className="text-gray-600 text-sm leading-relaxed pb-5">{faq.a}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+              <AnimatePresence initial={false}>
+                {showAll && faqs.slice(VISIBLE_DEFAULT).map((faq, i) => {
+                  const idx = VISIBLE_DEFAULT + i;
+                  return (
+                    <motion.div key={idx} initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25, delay: i * 0.05, ease: "easeOut" }}>
+                      <button onClick={() => toggle(idx)} className="w-full flex items-center justify-between gap-4 py-5 text-left cursor-pointer group">
+                        <span className={`text-sm font-semibold transition-colors ${openIndex === idx ? "text-[#485C46]" : "text-gray-900 group-hover:text-[#485C46]"}`}>{faq.q}</span>
+                        <ChevronDown size={18} className="flex-shrink-0 text-gray-400 transition-transform duration-300" style={{ transform: openIndex === idx ? "rotate(180deg)" : "rotate(0deg)" }} />
+                      </button>
+                      <AnimatePresence initial={false}>
+                        {openIndex === idx && (
+                          <motion.div key="a" initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.28, ease: "easeInOut" }} className="overflow-hidden">
+                            <p className="text-gray-600 text-sm leading-relaxed pb-5">{faq.a}</p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  );
+                })}
+              </AnimatePresence>
+            </div>
+            <button
+              onClick={() => { setShowAll(v => !v); if (showAll) setOpenIndex(null); }}
+              className="cursor-pointer mt-4 w-full py-3 rounded-xl border border-[#485C46]/30 text-sm font-medium text-[#485C46] hover:bg-[#485C46]/5 transition-colors"
+            >
+              {showAll ? "Згорнути ↑" : `Показати ще ${faqs.length - VISIBLE_DEFAULT} питання ↓`}
+            </button>
+          </div>
+
+          {/* Desktop: all questions always visible */}
+          <div className="hidden md:block bg-[#F5F0E8] rounded-2xl px-6 divide-y divide-[#E8E2D6]">
+            {faqs.map((faq, i) => (
               <div key={i}>
-                <button
-                  onClick={() => toggle(i)}
-                  className="w-full flex items-center justify-between gap-4 py-5 text-left cursor-pointer group"
-                >
-                  <span className={`text-sm font-semibold transition-colors ${openIndex === i ? "text-[#485C46]" : "text-gray-900 group-hover:text-[#485C46]"}`}>
-                    {faq.q}
-                  </span>
-                  <ChevronDown size={18} className="flex-shrink-0 text-gray-400 transition-transform duration-300"
-                    style={{ transform: openIndex === i ? "rotate(180deg)" : "rotate(0deg)" }} />
+                <button onClick={() => toggle(i)} className="w-full flex items-center justify-between gap-4 py-5 text-left cursor-pointer group">
+                  <span className={`text-sm font-semibold transition-colors ${openIndex === i ? "text-[#485C46]" : "text-gray-900 group-hover:text-[#485C46]"}`}>{faq.q}</span>
+                  <ChevronDown size={18} className="flex-shrink-0 text-gray-400 transition-transform duration-300" style={{ transform: openIndex === i ? "rotate(180deg)" : "rotate(0deg)" }} />
                 </button>
                 <AnimatePresence initial={false}>
                   {openIndex === i && (
-                    <motion.div key="answer" initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.28, ease: "easeInOut" }} className="overflow-hidden">
+                    <motion.div key="a" initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.28, ease: "easeInOut" }} className="overflow-hidden">
                       <p className="text-gray-600 text-sm leading-relaxed pb-5">{faq.a}</p>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
             ))}
-
-            <AnimatePresence initial={false}>
-              {showAll && faqs.slice(VISIBLE_DEFAULT).map((faq, i) => {
-                const idx = VISIBLE_DEFAULT + i;
-                return (
-                  <motion.div key={idx} initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25, delay: i * 0.05, ease: "easeOut" }}>
-                    <button
-                      onClick={() => toggle(idx)}
-                      className="w-full flex items-center justify-between gap-4 py-5 text-left cursor-pointer group"
-                    >
-                      <span className={`text-sm font-semibold transition-colors ${openIndex === idx ? "text-[#485C46]" : "text-gray-900 group-hover:text-[#485C46]"}`}>
-                        {faq.q}
-                      </span>
-                      <ChevronDown size={18} className="flex-shrink-0 text-gray-400 transition-transform duration-300"
-                        style={{ transform: openIndex === idx ? "rotate(180deg)" : "rotate(0deg)" }} />
-                    </button>
-                    <AnimatePresence initial={false}>
-                      {openIndex === idx && (
-                        <motion.div key="answer" initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.28, ease: "easeInOut" }} className="overflow-hidden">
-                          <p className="text-gray-600 text-sm leading-relaxed pb-5">{faq.a}</p>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
           </div>
-
-          <button
-            onClick={() => { setShowAll(v => !v); if (showAll) setOpenIndex(null); }}
-            className="cursor-pointer mt-4 w-full py-3 rounded-xl border border-[#485C46]/30 text-sm font-medium text-[#485C46] hover:bg-[#485C46]/5 transition-colors"
-          >
-            {showAll ? "Згорнути ↑" : `Показати ще ${faqs.length - VISIBLE_DEFAULT} питання ↓`}
-          </button>
         </FadeIn>
 
       </div>
