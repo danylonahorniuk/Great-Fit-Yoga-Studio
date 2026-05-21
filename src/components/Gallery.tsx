@@ -5,12 +5,12 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { FadeIn } from "./ui/FadeIn";
 
 const photos = [
-  { src: "https://images.unsplash.com/photo-1761971975724-31001b4de0bf?w=1200&q=85", alt: "Зал для йоги" },
+  { src: "https://images.unsplash.com/photo-1761971975047-6426232852ed?w=1200&q=85", alt: "Заняття в студії" },
   { src: "https://images.unsplash.com/photo-1761971975973-cbb3e59263de?w=1200&q=85", alt: "Студія з великими вікнами" },
   { src: "https://images.unsplash.com/photo-1761971975962-9cc397e2ba2a?w=1200&q=85", alt: "Зала з килимками" },
   { src: "https://images.unsplash.com/photo-1687783615476-f4c12358ca9d?w=1200&q=85", alt: "Килимки для практики" },
   { src: "https://images.unsplash.com/photo-1687783615494-b4a1f1af8b58?w=1200&q=85", alt: "Простора зала" },
-  { src: "https://images.unsplash.com/photo-1761971975047-6426232852ed?w=1200&q=85", alt: "Заняття в студії" },
+  { src: "https://images.unsplash.com/photo-1761971975724-31001b4de0bf?w=1200&q=85", alt: "Зал для йоги" },
 ];
 
 export default function Gallery() {
