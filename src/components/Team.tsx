@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import { X } from "lucide-react";
+import { X, ChevronRight } from "lucide-react";
 import { useModal } from "./modals/ModalContext";
 import { FadeIn } from "./ui/FadeIn";
 
@@ -131,7 +131,7 @@ export default function Team() {
                   <p className="text-[#485C46] text-sm mt-0.5">{t.role}</p>
                   <p className="text-gray-400 text-xs mt-1">{t.exp}</p>
                 </div>
-                <div className="w-2 h-2 rounded-full bg-[#485C46]/30 flex-shrink-0" />
+                <ChevronRight size={18} className="flex-shrink-0 text-gray-300 group-hover:text-[#485C46] transition-colors" />
               </button>
             </FadeIn>
           ))}
