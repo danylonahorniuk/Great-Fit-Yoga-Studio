@@ -30,7 +30,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <a href="#home" className="flex items-center gap-0 font-bold" style={{ color: "#485C46" }}>
-          <Image src="/logo.png" alt="Great Fit Yoga Studio" width={90} height={90} className="object-contain" />
+          <Image src="/logo.png" alt="Great Fit Yoga Studio" width={90} height={90} className="object-contain" priority />
           <span className="text-sm leading-tight">
             Great Fit<br />
             <span className="font-normal text-xs text-gray-500">Yoga Studio</span>
