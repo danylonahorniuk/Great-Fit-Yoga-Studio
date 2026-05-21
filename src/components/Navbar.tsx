@@ -29,9 +29,9 @@ export default function Navbar() {
         willChange: "transform",
       }}
     >
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center">
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-0 font-bold" style={{ color: "#485C46" }}>
+        <a href="#home" className="flex items-center gap-0 font-bold flex-none" style={{ color: "#485C46" }}>
           <Image src="/logo.png" alt="Great Fit Yoga Studio" width={90} height={90} className="object-contain" priority />
           <span className="text-sm leading-tight">
             Great Fit<br />
@@ -40,7 +40,7 @@ export default function Navbar() {
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-5">
+        <nav className="hidden md:flex items-center gap-5 ml-auto">
           {links.map((l) => (
             <a
               key={l.href}
@@ -63,7 +63,7 @@ export default function Navbar() {
 
         {/* Mobile burger */}
         <button
-          className="md:hidden text-gray-600"
+          className="md:hidden text-gray-600 ml-auto"
           onClick={() => setOpen(!open)}
           aria-label="Меню"
         >
