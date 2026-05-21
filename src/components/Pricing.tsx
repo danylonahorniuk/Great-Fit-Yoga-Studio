@@ -1,5 +1,4 @@
 "use client";
-import { useRef, useState } from "react";
 import { Check } from "lucide-react";
 import { useModal } from "./modals/ModalContext";
 import { FadeIn } from "./ui/FadeIn";
@@ -100,8 +99,6 @@ function PlanCard({ plan, openBooking }: { plan: typeof plans[0]; openBooking: (
 
 export default function Pricing() {
   const { openBooking } = useModal();
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(1); // start on Popular
 
   return (
     <section id="pricing" className="py-20 bg-gray-50">
@@ -113,42 +110,59 @@ export default function Pricing() {
           </div>
         </FadeIn>
 
-        {/* Mobile: snap scroll */}
-        <div className="md:hidden">
-          <div
-            ref={scrollRef}
-            className="flex overflow-x-auto gap-4 pb-2"
-            style={{ scrollbarWidth: "none", scrollSnapType: "x mandatory" }}
-            onScroll={() => {
-              if (!scrollRef.current) return;
-              const idx = Math.round(scrollRef.current.scrollLeft / scrollRef.current.offsetWidth);
-              setActiveIndex(idx);
-            }}
-          >
-            {plans.map((plan) => (
-              <div
-                key={plan.name}
-                className="flex-shrink-0 w-full"
-                style={{ scrollSnapAlign: "start" }}
-              >
-                <PlanCard plan={plan} openBooking={openBooking} />
-              </div>
-            ))}
-          </div>
+        {/* Mobile: all 3 side by side, popular wider */}
+        <div className="md:hidden flex gap-2 items-stretch">
+          {plans.map((plan) => (
+            <div
+              key={plan.name}
+              className={`flex flex-col rounded-2xl p-3 ${
+                plan.highlight ? "flex-[4] bg-[#485C46] text-white shadow-xl" : "flex-[3] bg-[#E8E2D6] text-gray-900"
+              }`}
+            >
+              {/* Badge */}
+              {plan.highlight && (
+                <span className="text-[9px] font-bold bg-white/20 px-2 py-0.5 rounded-full self-start mb-2 whitespace-nowrap">
+                  ✦ ТОП
+                </span>
+              )}
 
-          {/* Dots */}
-          <div className="flex justify-center gap-1.5 mt-4">
-            {plans.map((_, i) => (
+              {/* Name */}
+              <p className={`text-[10px] font-medium mb-1 ${plan.highlight ? "text-white/70" : "text-gray-400"}`}>
+                {plan.name}
+              </p>
+
+              {/* Price */}
+              <p className="text-lg font-bold leading-none">₴{plan.price}</p>
+              <p className={`text-[10px] mb-3 ${plan.highlight ? "text-white/50" : "text-gray-400"}`}>/міс</p>
+
+              {/* Features */}
+              <ul className="flex flex-col gap-1.5 flex-1 mb-3">
+                {plan.features.slice(0, plan.highlight ? 4 : 3).map((f) => (
+                  <li key={f} className="flex items-start gap-1">
+                    <Check size={9} className={`flex-shrink-0 mt-0.5 ${plan.highlight ? "text-white/80" : "text-[#485C46]"}`} strokeWidth={3} />
+                    <span className={`text-[10px] leading-tight ${plan.highlight ? "text-white/80" : "text-gray-600"}`}>{f}</span>
+                  </li>
+                ))}
+                {plan.features.length > (plan.highlight ? 4 : 3) && (
+                  <li className={`text-[10px] ${plan.highlight ? "text-white/50" : "text-gray-400"}`}>
+                    +{plan.features.length - (plan.highlight ? 4 : 3)} ще
+                  </li>
+                )}
+              </ul>
+
+              {/* CTA */}
               <button
-                key={i}
-                onClick={() => {
-                  scrollRef.current?.scrollTo({ left: i * scrollRef.current.offsetWidth, behavior: "smooth" });
-                  setActiveIndex(i);
-                }}
-                className={`rounded-full transition-all duration-300 ${i === activeIndex ? "w-5 h-2 bg-[#485C46]" : "w-2 h-2 bg-gray-300"}`}
-              />
-            ))}
-          </div>
+                onClick={openBooking}
+                className={`cursor-pointer w-full py-2 rounded-lg text-[11px] font-semibold transition-colors ${
+                  plan.highlight
+                    ? "bg-[#E8E2D6] text-[#485C46] hover:bg-[#ddd8cc]"
+                    : "bg-[#485C46] text-white hover:bg-[#3a4a38]"
+                }`}
+              >
+                {plan.cta}
+              </button>
+            </div>
+          ))}
         </div>
 
         {/* Desktop: grid */}
