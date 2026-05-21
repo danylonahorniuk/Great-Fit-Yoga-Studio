@@ -7,68 +7,126 @@ import { FadeIn } from "./ui/FadeIn";
 export default function Hero() {
   const { openBooking, openContact } = useModal();
   return (
-    <section id="home" className="relative min-h-screen overflow-hidden" style={{ backgroundColor: "#F0EDE6" }}>
-      {/* Full-width background image */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <Image
-          src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?w=1920&q=85"
-          alt="Йога"
-          fill
-          priority
-          className="object-cover object-right"
-          sizes="100vw"
-        />
-      </div>
+    <section id="home" style={{ backgroundColor: "#F0EDE6" }}>
 
-      {/* Gradient: solid beige left → transparent right */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: "linear-gradient(to right, #F0EDE6 30%, #F0EDE655 48%, transparent 62%)",
-        }}
-      />
+      {/* MOBILE layout */}
+      <div className="md:hidden flex flex-col pt-16">
+        {/* Image */}
+        <div className="relative w-full h-[280px]">
+          <Image
+            src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?w=828&q=85"
+            alt="Йога"
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="100vw"
+          />
+        </div>
 
-
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 min-h-screen flex items-center">
-        <div className="max-w-lg pt-16">
+        {/* Content */}
+        <div className="px-6 py-10 flex flex-col gap-5">
           <FadeIn delay={0.1}>
-          <h1
-            className="uppercase mb-6 leading-none tracking-wide"
-            style={{
-              fontFamily: "var(--font-oswald)",
-              fontSize: "clamp(3rem, 6vw, 5.5rem)",
-              color: "#2D3A1E",
-              fontWeight: 700,
-            }}
-          >
-            Йога перш<br />за все
-          </h1>
-          </FadeIn>
-          <FadeIn delay={0.25}>
-          <p className="text-gray-700 text-base md:text-lg mb-8 max-w-sm leading-relaxed">
-            Ласкаво просимо до Great Fit — місця, де традиції зустрічаються з інноваціями. Наші тренери проведуть вас через трансформаційні програми, що зміцнять тіло та заспокоять розум.
-          </p>
-          </FadeIn>
-          <FadeIn delay={0.4}>
-          <div className="flex flex-wrap items-center gap-4">
-            <button
-              onClick={openBooking}
-              className="cursor-pointer bg-[#485C46] text-white px-6 py-3 rounded-md text-sm font-medium hover:bg-[#3a4a38] transition-colors"
+            <h1
+              className="uppercase leading-none tracking-wide"
+              style={{
+                fontFamily: "var(--font-oswald)",
+                fontSize: "clamp(2.8rem, 12vw, 4rem)",
+                color: "#2D3A1E",
+                fontWeight: 700,
+              }}
             >
-              Записатись на сесію
-            </button>
-            <button
-              onClick={openContact}
-              className="cursor-pointer flex items-center gap-2 text-gray-700 text-sm font-medium hover:text-[#485C46] transition-colors"
-            >
-              Зв'язатись з нами
-              <Info size={16} />
-            </button>
-          </div>
+              Йога перш<br />за все
+            </h1>
+          </FadeIn>
+          <FadeIn delay={0.2}>
+            <p className="text-gray-700 text-sm leading-relaxed">
+              Ласкаво просимо до Great Fit — місця, де традиції зустрічаються з інноваціями. Наші тренери проведуть вас через трансформаційні програми, що зміцнять тіло та заспокоять розум.
+            </p>
+          </FadeIn>
+          <FadeIn delay={0.3}>
+            <div className="flex flex-col gap-3">
+              <button
+                onClick={openBooking}
+                className="cursor-pointer bg-[#485C46] text-white px-6 py-3 rounded-md text-sm font-medium hover:bg-[#3a4a38] transition-colors w-full text-center"
+              >
+                Записатись на сесію
+              </button>
+              <button
+                onClick={openContact}
+                className="cursor-pointer flex items-center justify-center gap-2 text-gray-700 text-sm font-medium hover:text-[#485C46] transition-colors"
+              >
+                Зв'язатись з нами
+                <Info size={16} />
+              </button>
+            </div>
           </FadeIn>
         </div>
       </div>
+
+      {/* DESKTOP layout */}
+      <div className="hidden md:block relative min-h-screen overflow-hidden">
+        {/* Background image */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <Image
+            src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?w=1920&q=85"
+            alt="Йога"
+            fill
+            priority
+            className="object-cover object-right"
+            sizes="100vw"
+          />
+        </div>
+
+        {/* Gradient */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: "linear-gradient(to right, #F0EDE6 30%, #F0EDE655 48%, transparent 62%)",
+          }}
+        />
+
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 min-h-screen flex items-center">
+          <div className="max-w-lg pt-16">
+            <FadeIn delay={0.1}>
+              <h1
+                className="uppercase mb-6 leading-none tracking-wide"
+                style={{
+                  fontFamily: "var(--font-oswald)",
+                  fontSize: "clamp(3rem, 6vw, 5.5rem)",
+                  color: "#2D3A1E",
+                  fontWeight: 700,
+                }}
+              >
+                Йога перш<br />за все
+              </h1>
+            </FadeIn>
+            <FadeIn delay={0.25}>
+              <p className="text-gray-700 text-base md:text-lg mb-8 max-w-sm leading-relaxed">
+                Ласкаво просимо до Great Fit — місця, де традиції зустрічаються з інноваціями. Наші тренери проведуть вас через трансформаційні програми, що зміцнять тіло та заспокоять розум.
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.4}>
+              <div className="flex flex-wrap items-center gap-4">
+                <button
+                  onClick={openBooking}
+                  className="cursor-pointer bg-[#485C46] text-white px-6 py-3 rounded-md text-sm font-medium hover:bg-[#3a4a38] transition-colors"
+                >
+                  Записатись на сесію
+                </button>
+                <button
+                  onClick={openContact}
+                  className="cursor-pointer flex items-center gap-2 text-gray-700 text-sm font-medium hover:text-[#485C46] transition-colors"
+                >
+                  Зв'язатись з нами
+                  <Info size={16} />
+                </button>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </div>
+
     </section>
   );
 }
