@@ -56,13 +56,63 @@ const half = Math.ceil(links.length / 2);
 
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-white border-t border-gray-200 pt-12 pb-6">
-      <div className="max-w-7xl mx-auto px-6">
+    <footer id="contact" className="bg-white border-t border-gray-200">
 
-        {/* Main grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+      {/* ── Mobile ── */}
+      <div className="md:hidden px-6 pt-8 pb-6 flex flex-col gap-6">
 
-          {/* Col 1 — Logo + desc + socials */}
+        {/* Logo row + socials */}
+        <div className="flex items-center justify-between">
+          <a href="#home" className="flex items-center gap-0 font-bold text-[#485C46]">
+            <Image src="/logo.png" alt="Great Fit Yoga Studio" width={64} height={64} className="object-contain" />
+            <span className="text-sm leading-tight">
+              Great Fit<br />
+              <span className="font-normal text-xs text-gray-500">Yoga Studio</span>
+            </span>
+          </a>
+          <div className="flex items-center gap-3">
+            {socials.map((s) => (
+              <a key={s.label} href={s.href} aria-label={s.label} className="text-gray-400 hover:text-[#485C46] transition-colors">
+                {s.svg}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Nav links — horizontal wrap */}
+        <div className="border-t border-gray-100 pt-5">
+          <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-3">Навігація</p>
+          <div className="flex flex-wrap gap-x-5 gap-y-2">
+            {links.map((l) => (
+              <a key={l.href} href={l.href} className="text-sm text-gray-500 hover:text-[#485C46] transition-colors">
+                {l.label}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Contacts — 2 col grid */}
+        <div className="border-t border-gray-100 pt-5">
+          <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-3">Контакти</p>
+          <div className="grid grid-cols-2 gap-y-2 gap-x-4 text-sm text-gray-400">
+            <span>вул. Хрещатик, 22</span>
+            <a href="tel:+380441234567" className="hover:text-[#485C46] transition-colors">+380 44 123 45 67</a>
+            <span>Київ, 01001</span>
+            <a href="mailto:info@greatfit.ua" className="hover:text-[#485C46] transition-colors">info@greatfit.ua</a>
+            <span className="text-xs text-gray-400 col-span-2 mt-1">Пн–Пт: 07:00–21:00 · Сб–Нд: 09:00–19:00</span>
+          </div>
+        </div>
+
+        {/* Copyright */}
+        <div className="border-t border-gray-100 pt-4">
+          <p className="text-center text-gray-400 text-xs">© 2026 Great Fit Yoga Studio. Всі права захищені</p>
+        </div>
+      </div>
+
+      {/* ── Desktop ── */}
+      <div className="hidden md:block max-w-7xl mx-auto px-6 pt-12 pb-6">
+        <div className="grid md:grid-cols-3 gap-10 mb-10">
+
           <div className="flex flex-col gap-4">
             <a href="#home" className="flex items-center gap-0 font-bold text-[#485C46]">
               <Image src="/logo.png" alt="Great Fit Yoga Studio" width={80} height={80} className="object-contain" />
@@ -83,7 +133,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Col 2 — Navigation split in 2 */}
           <div className="flex flex-col gap-3 md:items-center">
             <p className="text-xs font-semibold text-gray-900 uppercase tracking-widest mb-1">Навігація</p>
             <div className="grid grid-cols-2 gap-x-8 gap-y-3">
@@ -95,27 +144,20 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Col 3 — Contacts */}
           <div className="flex flex-col gap-3 md:items-end">
             <p className="text-xs font-semibold text-gray-900 uppercase tracking-widest mb-1">Контакти</p>
             <p className="text-sm text-gray-400 leading-relaxed md:text-right">вул. Хрещатик, 22, офіс 5<br />Київ, 01001</p>
-            <a href="tel:+380441234567" className="text-sm text-gray-400 hover:text-[#485C46] transition-colors">
-              +380 44 123 45 67
-            </a>
-            <a href="mailto:info@greatfit.ua" className="text-sm text-gray-400 hover:text-[#485C46] transition-colors">
-              info@greatfit.ua
-            </a>
+            <a href="tel:+380441234567" className="text-sm text-gray-400 hover:text-[#485C46] transition-colors">+380 44 123 45 67</a>
+            <a href="mailto:info@greatfit.ua" className="text-sm text-gray-400 hover:text-[#485C46] transition-colors">info@greatfit.ua</a>
             <p className="text-sm text-gray-400 md:text-right">Пн–Пт: 07:00–21:00<br />Сб–Нд: 09:00–19:00</p>
           </div>
 
         </div>
-
-        {/* Bottom bar */}
         <div className="border-t border-gray-100 pt-6">
           <p className="text-center text-gray-400 text-xs">© 2026 Great Fit Yoga Studio. Всі права захищені</p>
         </div>
-
       </div>
+
     </footer>
   );
 }
