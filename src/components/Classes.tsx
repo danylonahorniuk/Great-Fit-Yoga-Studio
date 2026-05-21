@@ -165,26 +165,30 @@ export default function Classes() {
           }}
         >
           {/* Mobile layout */}
-          <div className="md:hidden flex flex-col gap-5">
-            <div className="relative h-56 rounded-2xl overflow-hidden">
+          <div className="md:hidden flex flex-col gap-4">
+            {/* Image with title overlay */}
+            <div className="relative h-52 rounded-2xl overflow-hidden">
               <Image src={active.image} alt={active.title} fill className="object-cover" sizes="100vw" />
-              <div className="absolute inset-0 rounded-2xl pointer-events-none" style={{ boxShadow: "inset 0 0 40px 14px #F5F0E8" }} />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 55%)" }} />
+              <h3 className="absolute bottom-4 left-4 right-4 text-white text-xl font-bold leading-tight">{active.title}</h3>
             </div>
-            <h3 className="text-2xl font-bold text-gray-900">{active.title}</h3>
+
+            {/* Description */}
             <p className="text-gray-600 text-sm leading-relaxed">{active.desc}</p>
-            <div className="flex flex-col gap-3">
+
+            {/* Features 2×2 grid */}
+            <div className="grid grid-cols-2 gap-3">
               {active.features.map((f) => (
-                <div key={f.n} className="flex items-start gap-3">
-                  <span className="w-6 h-6 rounded-full border-2 border-[#485C46]/40 flex items-center justify-center text-xs font-bold text-[#485C46]/70 flex-shrink-0 mt-0.5">
+                <div key={f.n} className="flex flex-col gap-1.5">
+                  <span className="w-6 h-6 rounded-full border-2 border-[#485C46]/40 flex items-center justify-center text-xs font-bold text-[#485C46]/70 flex-shrink-0">
                     {f.n}
                   </span>
-                  <div>
-                    <p className="font-semibold text-gray-900 text-sm">{f.title}</p>
-                    <p className="text-gray-500 text-xs mt-0.5 leading-relaxed">{f.desc}</p>
-                  </div>
+                  <p className="font-semibold text-gray-900 text-sm">{f.title}</p>
+                  <p className="text-gray-500 text-xs leading-relaxed">{f.desc}</p>
                 </div>
               ))}
             </div>
+
             <button
               onClick={openBooking}
               className="cursor-pointer w-full bg-[#485C46] text-white py-3 rounded-md text-sm font-medium hover:bg-[#3a4a38] transition-colors"
