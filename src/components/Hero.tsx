@@ -3,9 +3,12 @@ import Image from "next/image";
 import { Info } from "lucide-react";
 import { useModal } from "./modals/ModalContext";
 import { FadeIn } from "./ui/FadeIn";
+import { useLang } from "@/contexts/LanguageContext";
 
 export default function Hero() {
   const { openBooking, openContact } = useModal();
+  const { t } = useLang();
+
   return (
     <section id="home" className="relative min-h-screen overflow-hidden" style={{ backgroundColor: "#F0EDE6" }}>
 
@@ -42,13 +45,13 @@ export default function Hero() {
                 fontWeight: 700,
               }}
             >
-              <span className="md:hidden text-white">Йога перш<br />за все</span>
-              <span className="hidden md:block" style={{ color: "#2D3A1E" }}>Йога перш<br />за все</span>
+              <span className="md:hidden text-white">{t.hero.line1}<br />{t.hero.line2}</span>
+              <span className="hidden md:block" style={{ color: "#2D3A1E" }}>{t.hero.line1}<br />{t.hero.line2}</span>
             </h1>
           </FadeIn>
           <FadeIn delay={0.25}>
             <p className="text-sm md:text-lg mb-8 max-w-sm leading-relaxed md:text-gray-700 text-white/90">
-              Ласкаво просимо до Great Fit — місця, де традиції зустрічаються з інноваціями. Наші тренери проведуть вас через трансформаційні програми, що зміцнять тіло та заспокоять розум.
+              {t.hero.subtitle}
             </p>
           </FadeIn>
           <FadeIn delay={0.4}>
@@ -57,13 +60,13 @@ export default function Hero() {
                 onClick={openBooking}
                 className="cursor-pointer bg-[#485C46] text-white px-6 py-3 rounded-md text-sm font-medium hover:bg-[#3a4a38] transition-colors w-full sm:w-auto text-center"
               >
-                Записатись на сесію
+                {t.hero.cta}
               </button>
               <button
                 onClick={openContact}
                 className="cursor-pointer flex items-center gap-2 text-sm font-medium transition-colors text-white/90 hover:text-white md:text-gray-700 md:hover:text-[#485C46]"
               >
-                Зв'язатись з нами
+                {t.hero.contact}
                 <Info size={16} />
               </button>
             </div>

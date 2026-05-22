@@ -14,6 +14,7 @@ import { ModalProvider } from "@/components/modals/ModalContext";
 import BookingModal from "@/components/modals/BookingModal";
 import ContactModal from "@/components/modals/ContactModal";
 import ServiceModal from "@/components/modals/ServiceModal";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -63,6 +64,7 @@ const jsonLd = {
 
 export default function Home() {
   return (
+    <LanguageProvider>
     <ModalProvider>
       <script
         type="application/ld+json"
@@ -84,5 +86,6 @@ export default function Home() {
       <ContactModal />
       <ServiceModal />
     </ModalProvider>
+    </LanguageProvider>
   );
 }

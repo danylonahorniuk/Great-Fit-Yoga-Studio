@@ -4,75 +4,30 @@ import { useState } from "react";
 import { X, ChevronRight } from "lucide-react";
 import { useModal } from "./modals/ModalContext";
 import { FadeIn } from "./ui/FadeIn";
+import { useLang } from "@/contexts/LanguageContext";
 
-const trainers = [
-  {
-    name: "Олена Коваль",
-    genitive: "Олени",
-    role: "Хатха-йога · Медитація",
-    exp: "7 років досвіду",
-    img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop&crop=faces&q=80",
-    bio: "Олена почала практику йоги у 2017 році після пошуку способів впоратись зі стресом. Вже за рік отримала сертифікацію RYT-200, а згодом RYT-500. Її заняття поєднують точну роботу з тілом та глибоку медитативну практику — кожен учасник відчуває індивідуальний підхід.",
-    tags: ["Хатха-йога", "Медитація", "Пранаяма", "Йога-нідра"],
-  },
-  {
-    name: "Марія Петренко",
-    genitive: "Марії",
-    role: "Флай-йога · Розтяжка",
-    exp: "5 років досвіду",
-    img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=faces&q=80",
-    bio: "Марія — сертифікований інструктор з флай-йоги та акробатики. Пройшла навчання в Барселоні та Берліні. Вірить, що гамак — найкращий спосіб зняти напругу зі спини і одночасно отримати задоволення від тренування. Веде як групові, так і індивідуальні заняття.",
-    tags: ["Флай-йога", "Розтяжка", "Акробатика", "Антигравітаційна йога"],
-  },
-  {
-    name: "Дмитро Сидоренко",
-    genitive: "Дмитра",
-    role: "Аштанга · Силова йога",
-    exp: "10 років досвіду",
-    img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=faces&q=80",
-    bio: "Дмитро — один з найдосвідченіших інструкторів студії. Проходив навчання в Майсорі, Індія, де вивчав традиційну аштанга-йогу. Його підхід — строгий, але підтримуючий. Спеціалізується на роботі з людьми, які хочуть швидкого прогресу і серйозної практики.",
-    tags: ["Аштанга", "Силова йога", "Віньяса", "Arm balances"],
-  },
-  {
-    name: "Наталія Бойко",
-    genitive: "Наталії",
-    role: "Інь-йога · Дихання",
-    exp: "6 років досвіду",
-    img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop&crop=faces&q=80",
-    bio: "Наталія спеціалізується на повільних, відновлювальних практиках. Сертифікований фахівець з технік дихання (pranayama) і терапевтичної йоги. Її заняття особливо підходять людям зі стресом, тривогою або хронічними болями в спині. Підхід м'який, але глибокий.",
-    tags: ["Інь-йога", "Дихальні практики", "Йога-терапія", "Релаксація"],
-  },
-  {
-    name: "Андрій Мельник",
-    genitive: "Андрія",
-    role: "Зумба · Кардіо",
-    exp: "4 роки досвіду",
-    img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop&crop=faces&q=80",
-    bio: "Андрій — ліцензований інструктор Zumba Fitness і фітнес-тренер. До роботи в студії займався латиноамериканськими танцями понад 8 років. Його заняття — це завжди висока енергія, сміх і максимальне спалювання калорій. Підходить для всіх рівнів без виключення.",
-    tags: ["Зумба", "Кардіо", "Латино-танці", "Функціональний фітнес"],
-  },
-  {
-    name: "Ірина Шевченко",
-    genitive: "Ірини",
-    role: "Йога для початківців",
-    exp: "8 років досвіду",
-    img: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=200&h=200&fit=crop&crop=faces&q=80",
-    bio: "Ірина — ідеальний тренер для тих, хто тільки починає. Вона сама прийшла до йоги не маючи жодної фізичної підготовки, тому чудово розуміє страхи новачків. Її заняття побудовані так, щоб кожен міг виконати позу у своєму темпі без осуду і порівняння з іншими.",
-    tags: ["Початківці", "Хатха", "Дитяча йога", "Йога для вагітних"],
-  },
+const trainerImages = [
+  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop&crop=faces&q=80",
+  "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=faces&q=80",
+  "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=faces&q=80",
+  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop&crop=faces&q=80",
+  "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop&crop=faces&q=80",
+  "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=200&h=200&fit=crop&crop=faces&q=80",
 ];
-
-type Trainer = typeof trainers[0];
 
 export default function Team() {
   const { openBooking } = useModal();
-  const [selected, setSelected] = useState<Trainer | null>(null);
+  const { t } = useLang();
+  const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
   const [isClosing, setIsClosing] = useState(false);
+
+  const trainers = t.team.trainers.map((tr, i) => ({ ...tr, img: trainerImages[i] }));
+  const selected = selectedIdx !== null ? trainers[selectedIdx] : null;
 
   const handleClose = () => {
     setIsClosing(true);
     setTimeout(() => {
-      setSelected(null);
+      setSelectedIdx(null);
       setIsClosing(false);
     }, 280);
   };
@@ -88,27 +43,27 @@ export default function Team() {
 
         <FadeIn>
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-2">Наша команда</h2>
-            <p className="text-gray-500 text-base">Досвідчені фахівці, що присвятили себе вашому добробуту</p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-2">{t.team.title}</h2>
+            <p className="text-gray-500 text-base">{t.team.subtitle}</p>
           </div>
         </FadeIn>
 
         {/* Mobile: 2-col avatar grid */}
         <div className="grid grid-cols-2 md:hidden gap-3">
-          {trainers.map((t, i) => (
-            <FadeIn key={t.name} delay={i * 0.08}>
+          {trainers.map((tr, i) => (
+            <FadeIn key={tr.name} delay={i * 0.08}>
               <button
-                onClick={() => setSelected(t)}
+                onClick={() => setSelectedIdx(i)}
                 className="flex flex-col items-center gap-3 bg-[#F5F0E8] rounded-2xl p-4 hover:shadow-md transition-all duration-300 w-full cursor-pointer text-center"
               >
                 <div className="relative w-20 h-20 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-white shadow-sm">
-                  <Image src={t.img} alt={t.name} fill className="object-cover" sizes="80px" />
+                  <Image src={tr.img} alt={tr.name} fill className="object-cover" sizes="80px" />
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900 text-sm leading-tight">{t.name}</p>
-                  <p className="text-[#485C46] text-xs mt-0.5">{t.role}</p>
-                  <p className="text-gray-400 text-[11px] mt-0.5">{t.exp}</p>
-                  <p className="text-[#485C46] text-[11px] font-medium mt-2">Детальніше →</p>
+                  <p className="font-semibold text-gray-900 text-sm leading-tight">{tr.name}</p>
+                  <p className="text-[#485C46] text-xs mt-0.5">{tr.role}</p>
+                  <p className="text-gray-400 text-[11px] mt-0.5">{tr.exp}</p>
+                  <p className="text-[#485C46] text-[11px] font-medium mt-2">{t.team.more}</p>
                 </div>
               </button>
             </FadeIn>
@@ -117,19 +72,19 @@ export default function Team() {
 
         {/* Desktop: horizontal rows */}
         <div className="hidden md:grid md:grid-cols-2 gap-4">
-          {trainers.map((t, i) => (
-            <FadeIn key={t.name} delay={i * 0.08}>
+          {trainers.map((tr, i) => (
+            <FadeIn key={tr.name} delay={i * 0.08}>
               <button
-                onClick={() => setSelected(t)}
+                onClick={() => setSelectedIdx(i)}
                 className="flex items-center gap-5 bg-[#F5F0E8] rounded-2xl p-5 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 text-left w-full cursor-pointer"
               >
                 <div className="relative w-[72px] h-[72px] rounded-full overflow-hidden flex-shrink-0">
-                  <Image src={t.img} alt={t.name} fill className="object-cover" sizes="72px" />
+                  <Image src={tr.img} alt={tr.name} fill className="object-cover" sizes="72px" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-gray-900">{t.name}</p>
-                  <p className="text-[#485C46] text-sm mt-0.5">{t.role}</p>
-                  <p className="text-gray-400 text-xs mt-1">{t.exp}</p>
+                  <p className="font-semibold text-gray-900">{tr.name}</p>
+                  <p className="text-[#485C46] text-sm mt-0.5">{tr.role}</p>
+                  <p className="text-gray-400 text-xs mt-1">{tr.exp}</p>
                 </div>
                 <ChevronRight size={18} className="flex-shrink-0 text-gray-300 group-hover:text-[#485C46] transition-colors" />
               </button>
@@ -192,7 +147,7 @@ export default function Team() {
                 ))}
               </div>
               <button onClick={handleBook} className="cursor-pointer w-full bg-[#485C46] text-white py-2.5 md:py-3 rounded-lg text-sm font-semibold hover:bg-[#3a4a38] transition-colors">
-                Записатись до {selected?.genitive}
+                {t.team.bookWith} {selected?.bookName}
               </button>
             </div>
           </div>

@@ -1,28 +1,27 @@
+"use client";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { IconBrandInstagram } from "@tabler/icons-react";
 import { FadeIn } from "./ui/FadeIn";
+import { useLang } from "@/contexts/LanguageContext";
 
-const hours = [
-  { days: "Понеділок – П'ятниця", time: "07:00 – 21:00" },
-  { days: "Субота",               time: "09:00 – 19:00" },
-  { days: "Неділя",               time: "09:00 – 17:00" },
-];
-
-const contacts = [
+const contactLinks = [
   { icon: Phone,              label: "+380 44 123 45 67", href: "tel:+380441234567" },
   { icon: Mail,               label: "info@greatfit.ua",  href: "mailto:info@greatfit.ua" },
   { icon: IconBrandInstagram, label: "@greatfit_yoga",    href: "https://instagram.com/greatfit_yoga" },
 ];
 
 export default function Contacts() {
+  const { t } = useLang();
+  const c = t.contacts;
+
   return (
     <section id="contacts" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
 
         <FadeIn>
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-2">Як нас знайти</h2>
-            <p className="text-gray-500 text-base">Ми знаходимось у центрі міста — зручно добиратись</p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-2">{c.title}</h2>
+            <p className="text-gray-500 text-base">{c.subtitle}</p>
           </div>
         </FadeIn>
 
@@ -48,11 +47,11 @@ export default function Contacts() {
                   <MapPin size={15} color="#485C46" strokeWidth={1.8} />
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900 text-sm mb-0.5">Адреса</p>
-                  <p className="text-gray-500 text-sm">вул. Хрещатик, 22, офіс 5, Київ</p>
+                  <p className="font-semibold text-gray-900 text-sm mb-0.5">{c.addressLabel}</p>
+                  <p className="text-gray-500 text-sm">{c.addressLine1}, {c.addressLine2}</p>
                   <a href="https://maps.google.com/?q=Хрещатик+22+Київ" target="_blank" rel="noopener noreferrer"
                     className="text-xs text-[#485C46] font-medium mt-1 inline-block">
-                    Google Maps →
+                    {c.mapLink}
                   </a>
                 </div>
               </div>
@@ -63,8 +62,8 @@ export default function Contacts() {
                   <Phone size={15} color="#485C46" strokeWidth={1.8} />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <p className="font-semibold text-gray-900 text-sm">Контакти</p>
-                  {contacts.map(({ icon: Icon, label, href }) => (
+                  <p className="font-semibold text-gray-900 text-sm">{c.contactsLabel}</p>
+                  {contactLinks.map(({ icon: Icon, label, href }) => (
                     <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined}
                       rel="noopener noreferrer" className="flex items-center gap-2 text-gray-500 text-sm">
                       <Icon size={13} color="#485C46" strokeWidth={1.8} className="flex-shrink-0 opacity-60" />
@@ -80,8 +79,8 @@ export default function Contacts() {
                   <Clock size={15} color="#485C46" strokeWidth={1.8} />
                 </div>
                 <div className="flex-1">
-                  <p className="font-semibold text-gray-900 text-sm mb-2">Години роботи</p>
-                  {hours.map(({ days, time }) => (
+                  <p className="font-semibold text-gray-900 text-sm mb-2">{c.hoursLabel}</p>
+                  {c.hours.map(({ days, time }) => (
                     <div key={days} className="flex justify-between items-center text-sm py-0.5">
                       <span className="text-gray-400">{days}</span>
                       <span className="font-medium text-gray-900">{time}</span>
@@ -102,14 +101,14 @@ export default function Contacts() {
                 <div className="w-8 h-8 rounded-full bg-[#485C46]/10 flex items-center justify-center flex-shrink-0">
                   <MapPin size={16} color="#485C46" strokeWidth={1.8} />
                 </div>
-                <p className="font-semibold text-gray-900">Адреса</p>
+                <p className="font-semibold text-gray-900">{c.addressLabel}</p>
               </div>
               <p className="text-gray-500 text-sm leading-relaxed pl-11">
-                вул. Хрещатик, 22, офіс 5<br />Київ, 01001
+                {c.addressLine1}<br />{c.addressLine2}
               </p>
               <a href="https://maps.google.com/?q=Хрещатик+22+Київ" target="_blank" rel="noopener noreferrer"
                 className="inline-block mt-2 pl-11 text-xs text-[#485C46] font-medium hover:underline">
-                Відкрити у Google Maps →
+                {c.mapLinkFull}
               </a>
             </div>
             </FadeIn>
@@ -120,10 +119,10 @@ export default function Contacts() {
                 <div className="w-8 h-8 rounded-full bg-[#485C46]/10 flex items-center justify-center flex-shrink-0">
                   <Phone size={16} color="#485C46" strokeWidth={1.8} />
                 </div>
-                <p className="font-semibold text-gray-900">Контакти</p>
+                <p className="font-semibold text-gray-900">{c.contactsLabel}</p>
               </div>
               <div className="flex flex-col gap-3 pl-11">
-                {contacts.map(({ icon: Icon, label, href }) => (
+                {contactLinks.map(({ icon: Icon, label, href }) => (
                   <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined}
                     rel="noopener noreferrer" className="flex items-center gap-3 group">
                     <Icon size={15} color="#485C46" strokeWidth={1.8} className="flex-shrink-0 opacity-60" />
@@ -140,10 +139,10 @@ export default function Contacts() {
                 <div className="w-8 h-8 rounded-full bg-[#485C46]/10 flex items-center justify-center flex-shrink-0">
                   <Clock size={16} color="#485C46" strokeWidth={1.8} />
                 </div>
-                <p className="font-semibold text-gray-900">Години роботи</p>
+                <p className="font-semibold text-gray-900">{c.hoursLabel}</p>
               </div>
               <div className="flex flex-col gap-2.5 pl-11">
-                {hours.map(({ days, time }) => (
+                {c.hours.map(({ days, time }) => (
                   <div key={days} className="flex justify-between items-center text-sm">
                     <span className="text-gray-400">{days}</span>
                     <span className="font-medium text-gray-900">{time}</span>

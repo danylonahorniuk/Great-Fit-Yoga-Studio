@@ -1,12 +1,14 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 import Image from "next/image";
 import { useModal } from "./ModalContext";
-import { useEffect } from "react";
+import { useLang } from "@/contexts/LanguageContext";
 
 export default function ServiceModal() {
   const { open, serviceData, close, openBooking } = useModal();
+  const { t } = useLang();
+  const m = t.modals.service;
   const [isClosing, setIsClosing] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
 
@@ -73,7 +75,7 @@ export default function ServiceModal() {
             onClick={handleBook}
             className="cursor-pointer w-full bg-[#485C46] text-white py-3 rounded-lg text-sm font-semibold hover:bg-[#3a4a38] transition-colors"
           >
-            Записатись на заняття
+            {m.book}
           </button>
         </div>
       </div>

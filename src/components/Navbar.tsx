@@ -3,23 +3,21 @@ import { useState, useEffect } from "react";
 import { Menu, X, ShoppingBag } from "lucide-react";
 import Image from "next/image";
 import { useModal } from "./modals/ModalContext";
+import { useLang } from "@/contexts/LanguageContext";
+import LanguageSwitcher from "./LanguageSwitcher";
 
-const links = [
-  { label: "Головна",   href: "#home" },
-  { label: "Послуги",   href: "#services" },
-  { label: "Програми",  href: "#facility" },
-  { label: "Ціни",      href: "#pricing" },
-  { label: "Команда",   href: "#team" },
-  { label: "FAQ",       href: "#faq" },
-  { label: "Контакти",  href: "#contacts" },
-];
+const hrefs = ["#home", "#services", "#facility", "#pricing", "#team", "#faq", "#contacts"];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { openBooking } = useModal();
+  const { t } = useLang();
 
   useEffect(() => { setMounted(true); }, []);
+
+  const navLabels = [t.nav.home, t.nav.services, t.nav.classes, t.nav.pricing, t.nav.team, t.nav.faq, t.nav.contacts];
+  const links = hrefs.map((href, i) => ({ href, label: navLabels[i] }));
 
   return (
     <>
@@ -54,20 +52,23 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* CTA */}
-        <button
-          onClick={openBooking}
-          className="cursor-pointer hidden lg:flex items-center gap-2 text-sm px-4 py-2 rounded-md bg-[#485C46] text-white hover:bg-[#3a4a38] transition-colors"
-        >
-          <ShoppingBag size={15} />
-          Записатись
-        </button>
+        {/* Desktop: switcher + CTA */}
+        <div className="hidden lg:flex items-center gap-3">
+          <LanguageSwitcher />
+          <button
+            onClick={openBooking}
+            className="cursor-pointer flex items-center gap-2 text-sm px-4 py-2 rounded-md bg-[#485C46] text-white hover:bg-[#3a4a38] transition-colors"
+          >
+            <ShoppingBag size={15} />
+            {t.nav.book}
+          </button>
+        </div>
 
         {/* Mobile burger */}
         <button
           className="lg:hidden text-gray-600"
           onClick={() => setOpen(!open)}
-          aria-label="Меню"
+          aria-label={t.nav.menu}
           suppressHydrationWarning
         >
           {open ? <X size={24} /> : <Menu size={24} />}
@@ -93,7 +94,7 @@ export default function Navbar() {
       >
         {/* Sidebar header */}
         <div className="flex items-center justify-between px-6 h-16 border-b border-gray-100 flex-shrink-0">
-          <span className="font-bold text-sm text-[#485C46]">Меню</span>
+          <span className="font-bold text-sm text-[#485C46]">{t.nav.menu}</span>
           <button
             onClick={() => setOpen(false)}
             className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors"
@@ -123,13 +124,16 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* CTA */}
-        <div className="px-4 pb-8 flex-shrink-0">
+        {/* Language switcher + CTA */}
+        <div className="px-4 pb-8 flex-shrink-0 flex flex-col gap-3">
+          <div className="flex justify-center">
+            <LanguageSwitcher />
+          </div>
           <button
             onClick={() => { setOpen(false); openBooking(); }}
             className="cursor-pointer w-full bg-[#485C46] text-white text-sm px-4 py-3 rounded-lg font-medium hover:bg-[#3a4a38] transition-colors"
           >
-            Записатись на заняття
+            {t.nav.bookClass}
           </button>
         </div>
       </div>

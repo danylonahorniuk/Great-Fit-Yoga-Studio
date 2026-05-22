@@ -2,9 +2,12 @@
 import { useState } from "react";
 import { X, Phone, Mail, MapPin, Clock } from "lucide-react";
 import { useModal } from "./ModalContext";
+import { useLang } from "@/contexts/LanguageContext";
 
 export default function ContactModal() {
   const { open, close } = useModal();
+  const { t } = useLang();
+  const m = t.modals.contact;
   const [submitted, setSubmitted] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -58,10 +61,10 @@ export default function ContactModal() {
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Повідомлення надіслано!</h3>
-              <p className="text-gray-500 text-sm">Дякуємо! Ми відповімо вам протягом декількох годин.</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{m.successTitle}</h3>
+              <p className="text-gray-500 text-sm">{m.successText}</p>
               <button onClick={handleClose} className="mt-6 bg-[#485C46] text-white px-6 py-2.5 rounded-md text-sm font-medium hover:bg-[#3a4a38] transition-colors">
-                Закрити
+                {m.close}
               </button>
             </div>
           ) : (
@@ -70,8 +73,8 @@ export default function ContactModal() {
               <div className="md:hidden">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <h2 className="text-xl font-bold text-gray-900">Зв'язатись з нами</h2>
-                    <p className="text-gray-500 text-xs mt-0.5">Ми відповімо протягом кількох годин</p>
+                    <h2 className="text-xl font-bold text-gray-900">{m.title}</h2>
+                    <p className="text-gray-500 text-xs mt-0.5">{m.subtitleShort}</p>
                   </div>
                   <button onClick={handleClose} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors flex-shrink-0 ml-3">
                     <X size={16} />
@@ -84,30 +87,30 @@ export default function ContactModal() {
                     <Phone size={13} className="text-[#485C46]" />
                     +380 44 123 45 67
                   </a>
-                  <a href="mailto:info@greatfit.com.ua" className="flex items-center gap-1.5 text-xs text-gray-600">
+                  <a href="mailto:info@greatfit.ua" className="flex items-center gap-1.5 text-xs text-gray-600">
                     <Mail size={13} className="text-[#485C46]" />
-                    info@greatfit.com.ua
+                    info@greatfit.ua
                   </a>
                 </div>
 
                 <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                   <input
-                    required type="text" placeholder="Ваше ім'я *"
+                    required type="text" placeholder={m.name}
                     value={form.name} onChange={e => setForm({ ...form, name: e.target.value })}
                     className="border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#485C46] transition-colors"
                   />
                   <input
-                    required type="email" placeholder="Email *"
+                    required type="email" placeholder={m.email}
                     value={form.email} onChange={e => setForm({ ...form, email: e.target.value })}
                     className="border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#485C46] transition-colors"
                   />
                   <textarea
-                    required rows={4} placeholder="Ваше повідомлення *"
+                    required rows={4} placeholder={m.message}
                     value={form.message} onChange={e => setForm({ ...form, message: e.target.value })}
                     className="border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#485C46] transition-colors resize-none"
                   />
                   <button type="submit" className="bg-[#485C46] text-white py-3 rounded-lg text-sm font-semibold hover:bg-[#3a4a38] transition-colors">
-                    Надіслати повідомлення
+                    {m.submit}
                   </button>
                 </form>
               </div>
@@ -115,14 +118,14 @@ export default function ContactModal() {
               {/* Desktop: 2-col layout */}
               <div className="hidden md:grid md:grid-cols-2 gap-8">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-1">Зв'язатись з нами</h2>
-                  <p className="text-gray-500 text-sm mb-6">Ми завжди раді відповісти на ваші запитання</p>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-1">{m.title}</h2>
+                  <p className="text-gray-500 text-sm mb-6">{m.subtitle}</p>
                   <div className="flex flex-col gap-5">
                     {[
-                      { Icon: Phone, label: "Телефон", value: "+380 44 123 45 67" },
-                      { Icon: Mail, label: "Email", value: "info@greatfit.com.ua" },
-                      { Icon: MapPin, label: "Адреса", value: "вул. Саксаганського 12, Київ" },
-                      { Icon: Clock, label: "Години роботи", value: "Пн–Пт: 7:00–21:00\nСб–Нд: 9:00–18:00" },
+                      { Icon: Phone, label: m.phoneLabel, value: "+380 44 123 45 67" },
+                      { Icon: Mail, label: m.emailLabel, value: "info@greatfit.ua" },
+                      { Icon: MapPin, label: m.addressLabel, value: t.contacts.addressLine1 + "\n" + t.contacts.addressLine2 },
+                      { Icon: Clock, label: m.hoursLabel, value: m.hoursLine1 + "\n" + m.hoursLine2 },
                     ].map(({ Icon, label, value }) => (
                       <div key={label} className="flex items-start gap-3">
                         <div className="w-9 h-9 rounded-full bg-[#485C46]/10 flex items-center justify-center flex-shrink-0">
@@ -140,22 +143,22 @@ export default function ContactModal() {
                 </div>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                   <input
-                    required type="text" placeholder="Ваше ім'я *"
+                    required type="text" placeholder={m.name}
                     value={form.name} onChange={e => setForm({ ...form, name: e.target.value })}
                     className="border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#485C46] transition-colors"
                   />
                   <input
-                    required type="email" placeholder="Email *"
+                    required type="email" placeholder={m.email}
                     value={form.email} onChange={e => setForm({ ...form, email: e.target.value })}
                     className="border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#485C46] transition-colors"
                   />
                   <textarea
-                    required rows={5} placeholder="Ваше повідомлення *"
+                    required rows={5} placeholder={m.message}
                     value={form.message} onChange={e => setForm({ ...form, message: e.target.value })}
                     className="border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#485C46] transition-colors resize-none"
                   />
                   <button type="submit" className="mt-auto bg-[#485C46] text-white py-3 rounded-lg text-sm font-semibold hover:bg-[#3a4a38] transition-colors">
-                    Надіслати повідомлення
+                    {m.submit}
                   </button>
                 </form>
               </div>

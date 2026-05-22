@@ -3,18 +3,20 @@ import { useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { FadeIn } from "./ui/FadeIn";
+import { useLang } from "@/contexts/LanguageContext";
 
 const photos = [
-  { src: "https://images.unsplash.com/photo-1761971975047-6426232852ed?w=1200&q=85", alt: "Заняття в студії" },
-  { src: "https://images.unsplash.com/photo-1761971975973-cbb3e59263de?w=1200&q=85", alt: "Студія з великими вікнами" },
-  { src: "https://images.unsplash.com/photo-1761971975962-9cc397e2ba2a?w=1200&q=85", alt: "Зала з килимками" },
-  { src: "https://images.unsplash.com/photo-1687783615476-f4c12358ca9d?w=1200&q=85", alt: "Килимки для практики" },
-  { src: "https://images.unsplash.com/photo-1687783615494-b4a1f1af8b58?w=1200&q=85", alt: "Простора зала" },
-  { src: "https://images.unsplash.com/photo-1761971975724-31001b4de0bf?w=1200&q=85", alt: "Зал для йоги" },
+  { src: "https://images.unsplash.com/photo-1761971975047-6426232852ed?w=1200&q=85" },
+  { src: "https://images.unsplash.com/photo-1761971975973-cbb3e59263de?w=1200&q=85" },
+  { src: "https://images.unsplash.com/photo-1761971975962-9cc397e2ba2a?w=1200&q=85" },
+  { src: "https://images.unsplash.com/photo-1687783615476-f4c12358ca9d?w=1200&q=85" },
+  { src: "https://images.unsplash.com/photo-1687783615494-b4a1f1af8b58?w=1200&q=85" },
+  { src: "https://images.unsplash.com/photo-1761971975724-31001b4de0bf?w=1200&q=85" },
 ];
 
 export default function Gallery() {
   const [active, setActive] = useState(0);
+  const { t } = useLang();
 
   const go = (idx: number) => setActive(idx);
   const prev = () => go((active - 1 + photos.length) % photos.length);
@@ -25,8 +27,8 @@ export default function Gallery() {
       <div className="max-w-7xl mx-auto px-6">
         <FadeIn>
           <div className="text-center mb-10">
-            <h2 className="text-4xl font-bold text-gray-900 mb-2">Наша студія</h2>
-            <p className="text-gray-500 text-base">Простір, створений для вашої практики</p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-2">{t.gallery.title}</h2>
+            <p className="text-gray-500 text-base">{t.gallery.subtitle}</p>
           </div>
         </FadeIn>
 
@@ -45,7 +47,7 @@ export default function Gallery() {
               >
                 <Image
                   src={p.src}
-                  alt={p.alt}
+                  alt={`${t.gallery.title} ${i + 1}`}
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 1280px"
@@ -58,14 +60,14 @@ export default function Gallery() {
             <button
               onClick={prev}
               className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 md:w-11 md:h-11 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors shadow-md"
-              aria-label="Попереднє фото"
+              aria-label="Previous"
             >
               <ChevronLeft size={20} />
             </button>
             <button
               onClick={next}
               className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 md:w-11 md:h-11 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors shadow-md"
-              aria-label="Наступне фото"
+              aria-label="Next"
             >
               <ChevronRight size={20} />
             </button>
@@ -88,9 +90,9 @@ export default function Gallery() {
                     : "opacity-50 hover:opacity-80"
                 }`}
                 style={{ height: 64 }}
-                aria-label={p.alt}
+                aria-label={`Photo ${i + 1}`}
               >
-                <Image src={p.src} alt={p.alt} fill className="object-cover" sizes="15vw" loading="lazy" />
+                <Image src={p.src} alt={`${t.gallery.title} ${i + 1}`} fill className="object-cover" sizes="15vw" loading="lazy" />
               </button>
             ))}
           </div>

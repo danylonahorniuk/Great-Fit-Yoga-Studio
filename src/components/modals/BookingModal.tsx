@@ -2,12 +2,12 @@
 import { useState } from "react";
 import { X } from "lucide-react";
 import { useModal } from "./ModalContext";
-
-const classes = ["Йога для початківців", "Розтяжка", "Флай-йога", "Інь-йога", "Зумба", "Дитяча йога"];
-const times = ["Ранок (8:00–11:00)", "День (12:00–15:00)", "Вечір (17:00–20:00)"];
+import { useLang } from "@/contexts/LanguageContext";
 
 export default function BookingModal() {
   const { open, close } = useModal();
+  const { t } = useLang();
+  const m = t.modals.booking;
   const [submitted, setSubmitted] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", cls: "", time: "" });
@@ -61,10 +61,10 @@ export default function BookingModal() {
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Заявку надіслано!</h3>
-              <p className="text-gray-500 text-sm">Ми зв'яжемось з вами найближчим часом для підтвердження.</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{m.successTitle}</h3>
+              <p className="text-gray-500 text-sm">{m.successText}</p>
               <button onClick={handleClose} className="mt-6 bg-[#485C46] text-white px-6 py-2.5 rounded-md text-sm font-medium hover:bg-[#3a4a38] transition-colors">
-                Закрити
+                {m.close}
               </button>
             </div>
           ) : (
@@ -72,8 +72,8 @@ export default function BookingModal() {
               {/* Mobile header row */}
               <div className="md:hidden flex items-center justify-between mb-4">
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900">Записатись на сесію</h2>
-                  <p className="text-gray-500 text-xs mt-0.5">Заповніть форму, ми зв'яжемось для підтвердження</p>
+                  <h2 className="text-xl font-bold text-gray-900">{m.title}</h2>
+                  <p className="text-gray-500 text-xs mt-0.5">{m.subtitleShort}</p>
                 </div>
                 <button onClick={handleClose} className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors flex-shrink-0 ml-3">
                   <X size={16} />
@@ -82,15 +82,15 @@ export default function BookingModal() {
 
               {/* Desktop header */}
               <div className="hidden md:block mb-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-1">Записатись на сесію</h2>
-                <p className="text-gray-500 text-sm">Заповніть форму і ми зв'яжемось для підтвердження</p>
+                <h2 className="text-2xl font-bold text-gray-900 mb-1">{m.title}</h2>
+                <p className="text-gray-500 text-sm">{m.subtitle}</p>
               </div>
 
               <form onSubmit={handleSubmit} className="flex flex-col gap-3 md:gap-4">
                 <input
                   required
                   type="text"
-                  placeholder="Ваше ім'я *"
+                  placeholder={m.name}
                   value={form.name}
                   onChange={e => setForm({ ...form, name: e.target.value })}
                   className="border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#485C46] transition-colors"
@@ -98,14 +98,14 @@ export default function BookingModal() {
                 <input
                   required
                   type="email"
-                  placeholder="Email *"
+                  placeholder={m.email}
                   value={form.email}
                   onChange={e => setForm({ ...form, email: e.target.value })}
                   className="border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#485C46] transition-colors"
                 />
                 <input
                   type="tel"
-                  placeholder="Телефон"
+                  placeholder={m.phone}
                   value={form.phone}
                   onChange={e => setForm({ ...form, phone: e.target.value })}
                   className="border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#485C46] transition-colors"
@@ -116,8 +116,8 @@ export default function BookingModal() {
                   onChange={e => setForm({ ...form, cls: e.target.value })}
                   className="border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#485C46] transition-colors text-gray-600"
                 >
-                  <option value="">Оберіть клас *</option>
-                  {classes.map(c => <option key={c} value={c}>{c}</option>)}
+                  <option value="">{m.selectClass}</option>
+                  {m.classes.map(c => <option key={c} value={c}>{c}</option>)}
                 </select>
                 <select
                   required
@@ -125,11 +125,11 @@ export default function BookingModal() {
                   onChange={e => setForm({ ...form, time: e.target.value })}
                   className="border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#485C46] transition-colors text-gray-600"
                 >
-                  <option value="">Зручний час *</option>
-                  {times.map(t => <option key={t} value={t}>{t}</option>)}
+                  <option value="">{m.selectTime}</option>
+                  {m.times.map(ti => <option key={ti} value={ti}>{ti}</option>)}
                 </select>
                 <button type="submit" className="mt-1 bg-[#485C46] text-white py-3 rounded-lg text-sm font-semibold hover:bg-[#3a4a38] transition-colors">
-                  Надіслати заявку
+                  {m.submit}
                 </button>
               </form>
             </>
